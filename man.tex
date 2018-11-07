@@ -88,7 +88,48 @@
                 $$
         \end{theorem}        
         \begin{proof}
-        
+            The main idea is, to use a conveniently function and derive the 
+            given conditions. 
+            
+            Let $\rho (S_V, I_V, I_H):= \log (I_V)$, then the It\^{o} formula 
+            gives
+            \begin{equation} \label{eqn:ito_noise_extinction}
+                \begin{aligned}
+                    d \log(I_V) = & 
+                        \left(
+                            \beta_v \frac{S_V I_H}{ I_V} - \mu_V
+                            - \frac{1}{2}
+                            \left(
+                                \frac{S_V I_H}{I_V}
+                            \right) ^ 2
+                        \right) dt
+                        %\\
+                        %&
+                         + \sigma_V 
+                        \left(
+                            \frac{S_V I_H}{ I_V}
+                        \right) dB_t ^ V.
+                \end{aligned}
+            \end{equation}
+            %
+            %
+            %
+            Summing an appropriate zero and applying the operator
+            $$
+                \left < \cdot \right >_t
+                := 
+                \int_{0} ^ t
+                    \cdot \ ds,
+            $$
+            to both sides of relation \eqref{eqn:ito_noise_extinction}, we get
+            \begin{equation} \label{eqn:applying_mean_opeartor}
+                \begin{aligned}
+                    \frac{1}{t} \log(I_v(t))
+                    &=
+                    \frac{1}{t} \log(I_v(0))
+                    
+                \end{aligned}
+            \end{equation}
         \end{proof}
 %
 %
