@@ -78,15 +78,18 @@
                 D$,
                 $$
                     \limsup_{t \to \infty} 
-                        \frac{I_V(t)}{t} = 0 
+                        \frac{1}{t} I_V(t) = 0 
                         \quad \text{and} \quad
                     \limsup_{t \to \infty} 
-                        \frac{I_H(t)}{t} = 0, \quad 
+                        \frac{1}{t} I_H(t) = 0, \quad 
                         \text{
                            a.s.
                         }
                 $$
         \end{theorem}        
+        \begin{proof}
+        
+        \end{proof}
 %
 %
 %
@@ -103,10 +106,16 @@
                     The noise intensities satisfies
                     $$
                         \sigma_V \leq 
-                            \sqrt{\frac{b \beta_V}{a N_V^{\infty}}},
+                            \sqrt{
+                                \frac{b}{a}
+                                \frac{\beta_V}{N_V^{\infty}}
+                                },
                          \quad
                         \sigma_H \leq
-                            \sqrt{\frac{a \beta_H }{b N_H}}.
+                            \sqrt{
+                                \frac{a}{b}
+                                \frac{\beta_H }{N_H
+                            }}.
                     $$
                 \item
                     \begin{equation*}
@@ -133,7 +142,8 @@
 %
         \begin{proposition}
             According to SDE model \eqref{eqn:sto_vector_host},
-            let $\varphi = \varphi (S_V, I_V, I_H)$, $\psi = (S_V, I_V, I_H)$ 
+            let $\varphi = \varphi (S_V, I_V, I_H)$, 
+            $\psi = \psi (S_V, I_V, I_H)$ 
             functions defined by
             \begin{equation}
                 \begin{aligned}
