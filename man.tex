@@ -3,6 +3,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{enumerate}
+\usepackage{cleveref}
+\usepackage{proba}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
@@ -12,121 +14,177 @@
 %
 %
 \begin{document}
-
-\section{Deterministic base dynamics}
-   \begin{equation}
-       \begin{aligned}
-           d S_V &= \Lambda_V - \beta_V S_V I_H - \mu_V S_V, \\
-           d I_V &= \beta_V S_V I_H - \mu_V I_V, \\
-           d I_H &= \beta_H (N_H - S_H) I_V - \mu_H I_H.
-       \end{aligned}
-   \end{equation}
-
-\section{The stochastic vector-host model}
-   \begin{equation} \label{eqn:sto_vector_host}
-       \begin{aligned}
-           d S_V &= \Lambda_V - \beta_V S_V I_H - \mu_V S_V 
-                 - \sigma_V S_V I_H dB_t^V,
-                \\
-           d I_V &= \beta_V S_V I_H - \mu_V I_V 
-                + \sigma_V S_V I_H dB_t^V,
-                \\
-           d I_H &= \beta_H (N_H - S_H) I_V - \mu_H I_H
-                + \sigma_H (N_H - S_H) I_V d B^H_t .
-       \end{aligned}
-   \end{equation}
-\section{Extinction}
-    Our analysis needs the following auxiliary function:
-    \begin{equation}
-        \rho (S_V, I_V, I_H) := \log (a I_V + b I_H) .
-    \end{equation}
- 
-    \begin{theorem}[Extinction by noise]
-        If $\min\{\sigma_V, \sigma_H\} \geq \max\{\beta_V, \beta_H\}$,
-        then the disease extingishes with probability one.  That is
-        $$
-            \limsup_{t \to \infty} \log (a I_V + b I_H) \leq - c
-        $$
-    \end{theorem}
-
-
-   
- \begin{assumption}\label{ass:extintion}
-        According to the vector-host model \eqref{eqn:sto_vector_host} and function
-        $\rho$
-        we ask the following.
-        \begin{enumerate}[(E-1)]
-            \item \label{ass:noise_condition}
-                The noise intensities satisfies
-                $$
-                    \sigma_V \leq 
-                        \sqrt{\beta_V \frac{b}{a N_V^{\infty}}},
-                     \qquad
-                    \sigma_H \leq
-                        \sqrt{\beta_H \frac{a}{b N_H}}.
-                $$
-            \item
-                \begin{equation*}
-                    \begin{aligned}
-                        \mathcal{R}_0 ^ S &:=
-                            \mathcal{R}_0^D - 
-                            \left( 
-                                \frac{\sigma_V ^ 2}{2} (N_V ^ {\infty}) ^ 2
-                                +
-                                \frac{\sigma_H ^ 2}{2} N_H ^ 2
-                            \right)
-                            <1,
-                            \\
-                        \mathcal{R}_0 ^ D &:=
-                                \frac{\beta_V \beta_H N_V ^ \infty N_H}{\mu_V \mu_H} .
-                    \end{aligned}
-                \end{equation*}
-        \end{enumerate}
-    \end{assumption}
+    \section{Deterministic base dynamics}
+       \begin{equation}
+           \begin{aligned}
+               d S_V &= \Lambda_V - \beta_V S_V I_H - \mu_V S_V, \\
+               d I_V &= \beta_V S_V I_H - \mu_V I_V, \\
+               d I_H &= \beta_H (N_H - S_H) I_V - \mu_H I_H.
+           \end{aligned}
+       \end{equation}
 %
-    \begin{proposition}
-        According to SDE model \eqref{eqn:sto_vector_host} and the function $\rho$,
-        let $\varphi = \varphi (S_V, I_V, I_H)$, $\psi = (S_V, I_V, I_H)$ functions defined by
-        \begin{equation}
+%
+%
+    \section{The stochastic vector-host model}
+       \begin{equation} \label{eqn:sto_vector_host}
             \begin{aligned}
-                \varphi (S_V, I_V, I_H) &:= 
-                    \beta_V \frac{S_V I_H}{a I_V + b I_H}
-                    - 
-                    \frac{\sigma_V ^ 2}{2} 
-                    \left(
-                        \frac{S_V I_H}{a I_V + b I_H}
-                    \right) ^2,
-                \\
-                \psi (S_V, I_V, I_H) &:=
-                \beta_H \frac{(N_H - I_H)  I_V}{a I_V + b I_H}
-                    - 
-                    \frac{\sigma_H ^ 2}{2} 
-                    \left(
-                        \frac{(N_H - I_H)  I_V}{a I_V + b I_H}
-                    \right) ^2.
-            \end{aligned}
+                d S_V &= 
+                    \left [
+                        \Lambda_V - \beta_V S_V I_H - \mu_V S_V 
+                    \right ] dt
+                    - \sigma_V S_V I_H dB_t^V,
+                    \\
+                d I_V &= 
+                    \left [
+                       \beta_V S_V I_H - \mu_V I_V 
+                    \right ]
+                    dt 
+                    + \sigma_V S_V I_H dB_t^V,
+                    \\
+                d I_H &= 
+                    \left [
+                        \beta_H (N_H - I_H) I_V - \mu_H I_H
+                    \right ] dt
+                    + \sigma_H (N_H - I_H) I_V d B^H_t .
+           \end{aligned}
+       \end{equation}
+    \section{Extinction}
+        Our analysis needs the following function and conditions.
+        \begin{equation}
+            \rho (S_V, I_V, I_H) := \log (a I_V + b I_H) .
         \end{equation}
-        If the noise intensities $\sigma_V$, $\sigma_H$ satisfies condition \ref{ass:noise_condition}
-        of Assumption \eqref{ass:extintion}, then
-        \begin{equation}
-            \begin{aligned}
-              \varphi (S_V, I_V, I_H) & \leq \beta_V \frac{a}{b} N_V ^ {\infty}
-             - \frac{\sigma_v ^ 2}{2}
-              \left(
-                      \frac{a}{b} N_V ^ {\infty}
-                  \right) ^ 2,
-              \\
-              \psi (S_V, I_V, I_H) & \leq
-                  \beta_H \frac{b}{a} N_H - \frac{\sigma_H ^ 2}{2}
+%
+%
+%
+%
+%
+        \begin{theorem}[Extinction by noise]
+                If 
+                $
+                    \displaystyle
+                    \min
+                        \left \{
+                              \sigma_V, \sigma_H 
+                        \right\} 
+                        > 
+                    \max 
+                        \left \{
+                            \sqrt{\frac{\beta_V}{\mu_V}},
+                            \sqrt{\frac{\beta_H}{\mu_H}}
+                        \right \}
+                $,
+                then the disease will extinguish with probability one.  That is,
+                for any initial condition $(S_V(0), I_V(0), I_H(0)) ^{\top} \in 
+                D$,
+                $$
+                    \limsup_{t \to \infty} 
+                        \frac{I_V(t)}{t} = 0 
+                        \quad \text{and} \quad
+                    \limsup_{t \to \infty} 
+                        \frac{I_H(t)}{t} = 0, \quad 
+                        \text{
+                           a.s.
+                        }
+                $$
+        \end{theorem}        
+%
+%
+%
+%
+    \paragraph{Above Assumption}
+
+        \begin{assumption}\label{ass:extintion}
+            According to the vector-host model \eqref{eqn:sto_vector_host} and 
+            function
+            $\rho$
+            we ask the following.
+            \begin{enumerate}[(E\textendash1)]
+                \item \label{ass:noise_condition}
+                    The noise intensities satisfies
+                    $$
+                        \sigma_V \leq 
+                            \sqrt{\frac{b \beta_V}{a N_V^{\infty}}},
+                         \quad
+                        \sigma_H \leq
+                            \sqrt{\frac{a \beta_H }{b N_H}}.
+                    $$
+                \item
+                    \begin{equation*}
+                        \begin{aligned}
+                            \mathcal{R}_0 ^ S &:=
+                                \mathcal{R}_0^D - 
+                                \left( 
+                                    \frac{\sigma_V ^ 2}{2} (N_V ^ {\infty}) ^ 2
+                                    +
+                                    \frac{\sigma_H ^ 2}{2} N_H ^ 2
+                                \right)
+                                <1,
+                                \\
+                            \mathcal{R}_0 ^ D &:=
+                                    \frac{\beta_V \beta_H N_V ^ \infty 
+                                    N_H}{\mu_V \mu_H} .
+                        \end{aligned}
+                    \end{equation*}
+            \end{enumerate}
+        \end{assumption}        
+%
+%
+%
+%
+        \begin{proposition}
+            According to SDE model \eqref{eqn:sto_vector_host},
+            let $\varphi = \varphi (S_V, I_V, I_H)$, $\psi = (S_V, I_V, I_H)$ 
+            functions defined by
+            \begin{equation}
+                \begin{aligned}
+                    \varphi (S_V, I_V, I_H) &:= 
+                        \beta_V \frac{S_V I_H}{a I_V + b I_H}
+                        - 
+                        \frac{\sigma_V ^ 2}{2} 
+                        \left(
+                            \frac{S_V I_H}{a I_V + b I_H}
+                        \right) ^2,
+                    \\
+                    \psi (S_V, I_V, I_H) &:=
+                    \beta_H \frac{(N_H - I_H)  I_V}{a I_V + b I_H}
+                        - 
+                        \frac{\sigma_H ^ 2}{2} 
+                        \left(
+                            \frac{(N_H - I_H)  I_V}{a I_V + b I_H}
+                        \right) ^2.
+                \end{aligned}
+            \end{equation}
+            If the noise intensities $\sigma_V$, $\sigma_H$ satisfies condition 
+            (E\textendash\ref{ass:noise_condition})
+            of \Cref{ass:extintion}, then
+            \begin{equation}
+                \begin{aligned}
+                  \varphi (S_V, I_V, I_H) & \leq \beta_V \frac{a}{b} N_V ^ 
+                  {\infty}
+                 - \frac{\sigma_v ^ 2}{2}
                   \left(
-                      \frac{b}{a} N_H
-                  \right) ^ 2 .
-            \end{aligned}
-        \end{equation}
-    \end{proposition}
-    \begin{theorem}
-        Let Assumption hold.
-    \end{theorem}
+                          \frac{a}{b} N_V ^ {\infty}
+                      \right) ^ 2,
+                  \\
+                  \psi (S_V, I_V, I_H) & \leq
+                      \beta_H \frac{b}{a} N_H - \frac{\sigma_H ^ 2}{2}
+                      \left(
+                          \frac{b}{a} N_H
+                      \right) ^ 2 .
+                \end{aligned}
+            \end{equation}
+        \end{proposition}
+%
+%
+        
+
+%
+%
+%
+%
+        \begin{theorem}
+            Let Assumption hold.
+        \end{theorem}
 %\bibliographystyle{alpha}
 %\bibliography{document}
 \end{document}
