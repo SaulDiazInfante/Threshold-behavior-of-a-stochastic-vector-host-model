@@ -1,4 +1,4 @@
-j\documentclass{amsart}
+\documentclass{amsart}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath,amsthm,amssymb}
@@ -125,11 +125,46 @@ j\documentclass{amsart}
             \begin{equation} \label{eqn:applying_mean_opeartor}
                 \begin{aligned}
                     \frac{1}{t} \log(I_V(t))
-                    &=
-                    \frac{1}{t} \log(I_V(0))
-                    %
+                    =&
+                    - 
+                    \frac{\sigma_V ^ 2}{2t}
+                    \int_{0} ^ {t}
+                        \left(
+                            \frac{S_V I_H}{I_V} 
+                            -
+                            \left(
+                                \frac{\beta_V}{\sigma_V ^ 2}
+                            \right) ^ 2
+                        \right)
+                    du
+                    \\
+                    & + 
+                    \frac{\beta_V}{\sigma_V ^ 2}
+                    - 
+                    \mu_V 
+                    + 
+                    \underbrace{
+                        \frac{1}{t} \log(I_V(0))
+                        +
+                        \frac{\sigma_V}{t}
+                        \int_{0}^t
+                            \frac{S_V I_H}{I_V}
+                            dB_u^V
+                    }_{:=M_t^V}                  
                 \end{aligned}
             \end{equation}
+%
+        Since the term with label $M_t^V$ is a martingale, 
+        the strong law of large numbers for martingales \cite{Mao} implies that
+        $$
+            \lim_{t \to \infty} M_t^V = 0, \quad \text{a.s.}
+        $$
+        Thus, from inequality \eqref{eqn:applying_mean_opeartor} we obtain
+        \begin{equation}\label{eqn:bound_vector_noise}
+            \limsup_{t \to \infty} \log(I_V(t)) 
+                \leq
+                \frac{\beta_V}{\sigma_V^2} - \mu_V.           
+        \end{equation}
         \end{proof}
 %
 %
