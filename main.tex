@@ -5,6 +5,7 @@
 \usepackage{enumerate}
 \usepackage{cleveref}
 \usepackage{proba}
+\usepackage{cleveref}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
@@ -170,48 +171,51 @@
 %
 %
 %
-    \paragraph{Above Assumption}
-
-        \begin{assumption}\label{ass:extintion}
-            According to the vector-host model \eqref{eqn:sto_vector_host} and 
-            function
-            $\rho$
-            we ask the following.
-            \begin{enumerate}[(E\textendash1)]
-                \item \label{ass:noise_condition}
-                    The noise intensities satisfies
-                    $$
-                        \sigma_V \leq 
-                            \sqrt{
-                                \frac{b}{a}
-                                \frac{\beta_V}{N_V^{\infty}}
-                                },
-                         \quad
-                        \sigma_H \leq
-                            \sqrt{
-                                \frac{a}{b}
-                                \frac{\beta_H }{N_H
-                            }}.
-                    $$
-                \item
-                    \begin{equation*}
-                        \begin{aligned}
-                            \mathcal{R}_0 ^ S &:=
-                                \mathcal{R}_0^D - 
-                                \left( 
-                                    \frac{\sigma_V ^ 2}{2} (N_V ^ {\infty}) ^ 2
-                                    +
-                                    \frac{\sigma_H ^ 2}{2} N_H ^ 2
-                                \right)
-                                <1,
-                                \\
-                            \mathcal{R}_0 ^ D &:=
-                                    \frac{\beta_V \beta_H N_V ^ \infty 
-                                    N_H}{\mu_V \mu_H} .
-                        \end{aligned}
-                    \end{equation*}
-            \end{enumerate}
-        \end{assumption}        
+    \paragraph{About Assumption}
+    The about results gives sufficient conditions to assure 
+    disease extinction\textemdash given sufficiently large noise intensity 
+    amplitudes. Thus, in what follows we ask that the noise amplitudes 
+    $\sigma_V$, $\sigma_H$ are sufficiently small.
+    \begin{assumption}\label{ass:extintion}
+        According to the vector-host model \eqref{eqn:sto_vector_host} and 
+        function
+        $\rho$
+        we ask the following.
+        \begin{enumerate}[(E\textendash1)]
+            \item \label{ass:noise_condition}
+                The noise intensities satisfies
+                $$
+                    \sigma_V \leq 
+                        \sqrt{
+                            \frac{b}{a}
+                            \frac{\beta_V}{N_V^{\infty}}
+                            },
+                     \quad
+                    \sigma_H \leq
+                        \sqrt{
+                            \frac{a}{b}
+                            \frac{\beta_H }{N_H
+                        }}.
+                $$
+            \item
+                \begin{equation*}
+                    \begin{aligned}
+                        \mathcal{R}_0 ^ S &:=
+                            \mathcal{R}_0^D - 
+                            \left( 
+                                \frac{\sigma_V ^ 2}{2} (N_V ^ {\infty}) ^ 2
+                                +
+                                \frac{\sigma_H ^ 2}{2} N_H ^ 2
+                            \right)
+                            <1,
+                            \\
+                        \mathcal{R}_0 ^ D &:=
+                                \frac{\beta_V \beta_H N_V ^ \infty 
+                                N_H}{\mu_V \mu_H} .
+                    \end{aligned}
+                \end{equation*}
+        \end{enumerate}
+    \end{assumption}        
 %
 %
 %
@@ -256,21 +260,28 @@
                       \beta_H \frac{b}{a} N_H - \frac{\sigma_H ^ 2}{2}
                       \left(
                           \frac{b}{a} N_H
-                      \right) ^ 2 .
+                      \right) ^ 2,
                 \end{aligned}
             \end{equation}
+        for all $(S_V, I_V, I_H)^{\top}$ in the invariant set $\mathbb{D}$.
         \end{proposition}
 %
 %
-        
-
 %
 %
 %
 %
-        \begin{theorem}
-            Let Assumption hold.
-        \end{theorem}
+    \paragraph{Intro to the extinction Theorem}
+    Now we establish our result to disease extinction.
+    \begin{theorem}
+        If \cref{ass:extintion} hold, then the solution of model 
+        \eqref{eqn:sto_vector_host} satisfies
+        \begin{equation}
+            \limsup_{t \to \infty}
+                \log(aI_V + b I_H) < c , \qquad a.s.,
+        \end{equation}
+    that is, the disease will extinguishes wit probability one.
+    \end{theorem}
 %\bibliographystyle{alpha}
 %\bibliography{document}
 \end{document}
