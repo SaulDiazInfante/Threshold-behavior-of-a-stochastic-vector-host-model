@@ -1,0 +1,62 @@
+\begin{assumption} \label{ass:persistence}
+    Let
+    $
+        \displaystyle
+        \varepsilon:=
+            \frac{\mu_V \mu_H}{\beta_V \beta_H N_H}
+                \left(
+                    \frac{\sigma_V ^ 2}{2}
+                    \left(
+                        N_V ^ {\infty}
+                    \right)
+                    +
+                    \frac{\sigma_H ^ 2}{2}
+                    N_H
+                \right)
+    $.
+    According to the model \eqref{eqn:sto_vector_host} we required the
+    following.
+    \begin{enumerate}[\bf{(P-}1)]
+        \item
+            $ \mathcal{R}_0 ^ S > 1$
+             
+        \item
+            \begin{equation*}
+                \sigma_V 
+                    < \mu_V \mu_H
+                    \sqrt{
+                        \frac{\beta_H N_H + \mu_H}{
+                            \left(
+                                \beta_V
+                                \left(
+                                    N_V ^ {\infty} - \varepsilon
+                                \right) 
+                                + \mu_V
+                            \right)  ^ 3
+                        }
+                    }
+            \end{equation*}
+        \item
+            \begin{equation*}
+                \sigma_H 
+                    < \mu_V \mu_H
+                    \sqrt{
+                        \frac{\beta_V (N_V ^ {\infty} - \varepsilon) + \mu_V}{
+                            \left(
+                                \beta_H N_H + \mu_H
+                            \right)  ^ 3
+                        }
+                    }
+            \end{equation*}
+        \item
+        $
+            \displaystyle
+            \min
+            \left\{
+                 \beta_H N_H + \mu_H, \ 
+                 \beta_V (N_V ^ {\infty} - \varepsilon) + \mu_V
+            \right\}
+            \geq 1.
+        $
+    \end{enumerate}
+\end{assumption}

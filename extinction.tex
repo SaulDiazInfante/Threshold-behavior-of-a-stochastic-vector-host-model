@@ -1,6 +1,6 @@
 Our analysis needs the following function and conditions.
 \begin{equation}
-    \rho (S_V, I_V, I_H) := \log (a I_V + b I_H) .
+    \rho (S_V, I_V, I_H) := \ln (a I_V + b I_H) .
 \end{equation}
 
 \begin{theorem}[Extinction by noise]
@@ -19,8 +19,8 @@ Our analysis needs the following function and conditions.
                 \right \}
         $,
         then the disease will extinguish with probability one.  That is,
-        for any initial condition $(S_V(0), I_V(0), I_H(0)) ^{\top} \in 
-        D$,
+        for any initial condition 
+        $(S_V(0), I_V(0), I_H(0)) ^{\top} \in \mathbb{D}$,
         $$
             \limsup_{t \to \infty} 
                 \frac{1}{t} I_V(t) = 0 
@@ -36,11 +36,11 @@ Our analysis needs the following function and conditions.
     The main idea is, to use a conveniently function and derive the 
     given conditions. 
     
-    Let $\rho (S_V, I_V, I_H):= \log (I_V)$, then the It\^{o} formula 
+    Let $\rho (S_V, I_V, I_H):= \ln (I_V)$, then the It\^{o} formula 
     gives
     \begin{equation} \label{eqn:ito_noise_extinction}
         \begin{aligned}
-            d \log(I_V) = & 
+            d \ln(I_V) = & 
                 \left(
                     \beta_v \frac{S_V I_H}{ I_V} - \mu_V
                     - \frac{1}{2}
@@ -69,7 +69,7 @@ Our analysis needs the following function and conditions.
     to both sides of relation \eqref{eqn:ito_noise_extinction}, we get
     \begin{equation} \label{eqn:applying_mean_opeartor}
         \begin{aligned}
-            \frac{1}{t} \log(I_V(t))
+            \frac{1}{t} \ln(I_V(t))
             =&
             - 
             \frac{\sigma_V ^ 2}{2t}
@@ -89,43 +89,63 @@ Our analysis needs the following function and conditions.
             \mu_V 
             + 
             \underbrace{
-                \frac{1}{t} \log(I_V(0))
+                \frac{1}{t} \ln(I_V(0))
                 +
                 \frac{\sigma_V}{t}
                 \int_{0}^t
                     \frac{S_V I_H}{I_V}
                     dB_u^V
-            }_{:=M_t^V}                  
+            }_{:=M_t^V} .                  
         \end{aligned}
     \end{equation}
 %
-    Since the term with label $M_t^V$ is a martingale, 
+    Since the integral in the term $M_t^V$ is a martingale, 
     the strong law of large numbers for martingales \cite{Mao} implies that
     $$
         \lim_{t \to \infty} M_t^V = 0, \quad \text{a.s.}
     $$
     Thus, from inequality \eqref{eqn:applying_mean_opeartor} we obtain
     \begin{equation}\label{eqn:bound_vector_noise}
-        \limsup_{t \to \infty} \log(I_V(t)) 
+        \limsup_{t \to \infty} \ln(I_V(t)) 
             \leq
             \frac{\beta_V}{\sigma_V^2} - \mu_V.           
     \end{equation}
+    Hence, applying condition for $\sigma_V$ and $\sigma_H$, we obtain the 
+    desired conclusion.
 \end{proof}
-%
 %
 %
 %
 \paragraph{About Assumption}
 The above results gives sufficient conditions to assure 
-disease extinction\textemdash given sufficiently large noise intensity 
-amplitudes. Thus, in what follows we ask that the noise amplitudes 
-$\sigma_V$, $\sigma_H$ are sufficiently small.
-\begin{assumption}\label{ass:extintion}
+disease extinction\textemdash given sufficiently large noise. Thus, 
+to propose a threshold parameter similar  to the deterministic
+$\mathcal{R}_0^D$, in what follows we ask that the noise amplitudes 
+$\sigma_V$, $\sigma_H$ are sufficiently small, that is,
+\begin{equation}\label{eqn:noise_small_condition}
+    \displaystyle
+    \max
+        \left \{
+              \sigma_V, \sigma_H 
+        \right\} 
+        < 
+    \min 
+        \left \{
+            \sqrt{\frac{\beta_V}{\mu_V}},
+            \sqrt{\frac{\beta_H}{\mu_H}}
+        \right \}.
+\end{equation}
+%
+%
+%
+\begin{assumption}\label{ass:extinction}
     According to the vector-host model \eqref{eqn:sto_vector_host} and 
     function
     $\rho$
     we ask the following.
-    \begin{enumerate}[(E\textendash1)]
+    \begin{enumerate}[\bf{(E-}1)]
+        \item 
+            The constants $a$, $b$ of function $\rho$ are positive.
         \item \label{ass:noise_condition}
             The noise intensities satisfies
             $$
@@ -154,8 +174,8 @@ $\sigma_V$, $\sigma_H$ are sufficiently small.
                         <1,
                         \\
                     \mathcal{R}_0 ^ D &:=
-                            \frac{\beta_V \beta_H N_V ^ \infty 
-                            N_H}{\mu_V \mu_H} .
+                            \frac{
+                                \beta_V \beta_H N_V ^ \infty N_H}{\mu_V \mu_H} .
                 \end{aligned}
             \end{equation*}
     \end{enumerate}
@@ -164,7 +184,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small.
 %
 %
 %
-\begin{proposition}
+\begin{proposition}\label{prp:quadratic_bound}
     According to SDE model \eqref{eqn:sto_vector_host},
     let $\varphi = \varphi (S_V, I_V, I_H)$, 
     $\psi = \psi (S_V, I_V, I_H)$ 
@@ -190,12 +210,12 @@ $\sigma_V$, $\sigma_H$ are sufficiently small.
     \end{equation}
     If the noise intensities $\sigma_V$, $\sigma_H$ satisfies condition 
     (E\textendash\ref{ass:noise_condition})
-    of \Cref{ass:extintion}, then
+    of \Cref{ass:extinction}, then
     \begin{equation}
         \begin{aligned}
           \varphi (S_V, I_V, I_H) & \leq \beta_V \frac{a}{b} N_V ^ 
           {\infty}
-         - \frac{\sigma_v ^ 2}{2}
+         - \frac{\sigma_V ^ 2}{2}
           \left(
                   \frac{a}{b} N_V ^ {\infty}
               \right) ^ 2,
@@ -207,22 +227,87 @@ $\sigma_V$, $\sigma_H$ are sufficiently small.
               \right) ^ 2,
         \end{aligned}
     \end{equation}
-for all $(S_V, I_V, I_H)^{\top}$ in the invariant set $\mathbb{D}$.
+    for all $(S_V, I_V, I_H)^{\top}$ in the invariant set $\mathbb{D}$.
 \end{proposition}
 %
-%
-%
-%
-%
-%
 \paragraph{Intro to the extinction Theorem}
-Now we establish our result to disease extinction.
+\begin{lemma}
+    Let \Cref{ass:extinction} hold, 
+    and assume that 
+    then there is a positive integer number $n$
+    such that the equation
+    \begin{equation}\label{eqn:quadratic_extinction}
+        2^n
+        \left(
+            \beta_V N_V^{\infty} +
+            \beta_H N_H
+        \right) x
+        - \frac{\mu_V \mu_H}{x}
+        =
+        \left(
+            \mathcal{R}_0^D -1
+        \right),
+    \end{equation}
+    has a positive solution $x=x^\dagger$. 
+\end{lemma}
+\begin{proof}
+    We can rewrite \eqref{eqn:quadratic_extinction} as
+    \begin{equation*}
+        \left(
+            \beta_V N_V ^ {\infty} +
+            \beta_H N_H            
+            -\frac{\mathcal{R}_0 ^ D - 1}{2 ^ n}
+        \right) x ^ 2
+        - \frac{\mu_v \mu_H}{2 ^ n}
+        = 0.
+    \end{equation*}
+    Thus, the solution of \eqref{eqn:quadratic_extinction} is
+    $$
+        x^{\dagger} = 
+            \frac{\mu_v \mu_H}{
+                \left(
+                    \beta_V N_V ^ {\infty} +
+                    \beta_H N_H            
+                    -\frac{\mathcal{R}_0 ^ D - 1}{2 ^ n}
+                \right)
+            }.
+    $$
+    To assure the positivity of $x^{\dagger}$ we consider two cases.
+    If $\mathcal{R}_0 ^ D \leq 1$, 
+    then $\mathcal{R}_0 - 1 \leq 0$, and $x^{\dagger} >0$.
+    Otherwise, if $\mathcal{R}_0 ^ D \geq 1$,
+    then taking 
+    $$          
+        n > \frac{1}{\ln 2} 
+            \ln
+            \left(
+                \displaystyle
+                \frac{\mathcal{R}_0 ^ D}{
+                    \left(
+                        \beta_V N_V ^ {\infty} +
+                        \beta_H N_H
+                    \right)
+                }    
+            \right),
+    $$
+    we obtain the positivity of $x^{\dagger}$.
+\end{proof}
+%
+%
+%
+Now we establish our threshold extinction result.
 \begin{theorem}
-    If \cref{ass:extintion} hold, then the solution of model 
+    If \Cref{ass:extinction} hold, then the solution of model 
     \eqref{eqn:sto_vector_host} satisfies
     \begin{equation}
         \limsup_{t \to \infty}
-            \log(aI_V + b I_H) < c , \qquad a.s.,
+            \ln(aI_V + b I_H) < c , \qquad a.s.,
     \end{equation}
-that is, the disease will extinguishes wit probability one.
+    that is, the disease will extinguishes wit probability one.
 \end{theorem}
+%
+%
+\begin{proof}
+    The main idea is to apply \Cref{prp:quadratic_bound} and 
+    \Cref{ass:extinction} to the It\^{o} formula of $\rho(S_V, I_V, I_H)$.
+\end{proof}
