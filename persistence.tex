@@ -8,20 +8,32 @@
                     \frac{\sigma_V ^ 2}{2}
                     \left(
                         N_V ^ {\infty}
-                    \right)
+                    \right) ^ 2
                     +
                     \frac{\sigma_H ^ 2}{2}
-                    N_H
+                    N_H ^2
                 \right)
     $.
     According to the model \eqref{eqn:sto_vector_host} we required the
     following.
-    \begin{enumerate}[\bf{(P-}1)]
+    \begin{enumerate}[\bf{(P\textendash}1)]
         \item
-            $ \mathcal{R}_0 ^ S > 1$
+            $ \mathcal{R}_0 ^ S > 1$,
              
         \item
-            \begin{equation*}
+        $
+            \displaystyle
+            \min
+            \left\{
+                 \beta_H N_H + \mu_H, \ 
+                 \beta_V (N_V ^ {\infty} - \varepsilon) + \mu_V
+            \right\}
+            \geq 1
+        $
+        \item Noise intensities satisfy 
+            \textbf{(E\textendash1)} of \Cref{ass:extinction}
+            and
+            \begin{align*}
                 \sigma_V 
                     < \mu_V \mu_H
                     \sqrt{
@@ -34,10 +46,8 @@
                                 + \mu_V
                             \right)  ^ 3
                         }
-                    }
-            \end{equation*}
-        \item
-            \begin{equation*}
+                    },
+                \quad
                 \sigma_H 
                     < \mu_V \mu_H
                     \sqrt{
@@ -47,16 +57,22 @@
                             \right)  ^ 3
                         }
                     }
-            \end{equation*}
-        \item
-        $
-            \displaystyle
-            \min
-            \left\{
-                 \beta_H N_H + \mu_H, \ 
-                 \beta_V (N_V ^ {\infty} - \varepsilon) + \mu_V
-            \right\}
-            \geq 1.
-        $
+            \end{align*}
     \end{enumerate}
-\end{assumption}
+    %
+    \end{assumption}
+    \begin{theorem}
+        Let \Cref{ass:persistence} hold, then the solution of SDE model
+        \eqref{eqn:sto_vector_host} satisfy
+        \begin{align*}
+            &\liminf_{t \to \infty}
+                (a I_V + b I_H) > 0, \\
+                & a:= \frac{\beta_H N_H + \mu_H}{\mu_V \mu_H},
+                \quad
+                b:=
+                \frac{
+                    \beta_V (N_V ^ {\infty} - \varepsilon)
+                    + \mu_H
+                    }{\mu_V \mu_H}.
+        \end{align*}
+    \end{theorem}
