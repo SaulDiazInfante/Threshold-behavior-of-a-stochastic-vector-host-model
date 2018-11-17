@@ -1,0 +1,22 @@
+\begin{equation} \label{eqn:sto_vector_host}
+    \begin{aligned}
+        d S_V &= 
+            \left [
+                \Lambda_V - \beta_V S_V I_H - \mu_V S_V 
+            \right ] dt
+            - \sigma_V S_V I_H dB_t^V,
+            \\
+        d I_V &= 
+            \left [
+               \beta_V S_V I_H - \mu_V I_V 
+            \right ]
+            dt 
+            + \sigma_V S_V I_H dB_t^V,
+            \\
+        d I_H &= 
+            \left [
+                \beta_H (N_H - I_H) I_V - \mu_H I_H
+            \right ] dt
+            + \sigma_H (N_H - I_H) I_V d B^H_t .
+   \end{aligned}
+\end{equation}

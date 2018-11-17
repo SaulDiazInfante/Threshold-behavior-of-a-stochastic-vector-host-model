@@ -56,23 +56,198 @@
                                 \beta_H N_H + \mu_H
                             \right)  ^ 3
                         }
-                    }
+                    } .
             \end{align*}
     \end{enumerate}
     %
-    \end{assumption}
-    \begin{theorem}
-        Let \Cref{ass:persistence} hold, then the solution of SDE model
-        \eqref{eqn:sto_vector_host} satisfy
-        \begin{align*}
-            &\liminf_{t \to \infty}
-                (a I_V + b I_H) > 0, \\
-                & a:= \frac{\beta_H N_H + \mu_H}{\mu_V \mu_H},
-                \quad
-                b:=
+\end{assumption}
+
+\begin{theorem}
+    Let \Cref{ass:persistence} hold, then the solution of SDE model
+    \eqref{eqn:sto_vector_host} satisfy
+    \begin{align*}
+        &\liminf_{t \to \infty}
+            (a I_V + b I_H) > 0, \\
+            & a:= \frac{\beta_H N_H + \mu_H}{\mu_V \mu_H},
+            \quad
+            b:=
+            \frac{
+                \beta_V (N_V ^ {\infty} - \varepsilon)
+                + \mu_H
+                }{\mu_V \mu_H}.
+    \end{align*}
+\end{theorem}
+%
+\begin{proof}
+    According to SDE \eqref{eqn:sto_vector_host} and function $\rho$,
+    the It\^{o} formula yields
+    \begin{equation} \label{eqn:ito_persistence} 
+        \begin{aligned}
+          d \ln \rho =&
+            \left \{
+                \dfrac{
+                    a (\beta_V S_V I_H - \mu_V I_V)
+                    +
+                    b [\beta_H (N_H - I_H) I_V - \mu_H I_H]
+                }{a I_V + bI_H}
+            \right \} dt
+            \\
+            & -
+            \frac{1}{2}
+            \left \{
+                \dfrac{
+                    \left(
+                        a \sigma_V S_V I_H
+                    \right) ^ 2
+                    +
+                    \left[
+                        b \sigma_H (N_H - I_H) I_V
+                    \right] ^2
+                }{
+                    \left( 
+                        a I_V + bI_H
+                    \right) ^ 2
+                }
+            \right \} dt
+            \\
+            & +
+            \sigma_V 
+            \frac{S_V I_H}{a I_V + b I_H}
+            d B_t ^ V
+            +
+            \sigma_H 
+            \frac{(N_H - I_H) I_V}{a I_V + b I_H}
+            d B_t ^ H .
+        \end{aligned}
+    \end{equation}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    Let $N_V(t):= I_V(t) + S_V(t)$. Substituting the relation
+    $S_V(t)= N_V(t) - I_V(t)$ in the formula \eqref{eqn:ito_persistence} %
+    % and applying condition
+    and after algebraic manipulations, we get
+    \begin{equation}
+        \begin{aligned}
+            d \ln \rho
+                \geq &
+%                \left\{
                 \frac{
-                    \beta_V (N_V ^ {\infty} - \varepsilon)
-                    + \mu_H
-                    }{\mu_V \mu_H}.
-        \end{align*}
-    \end{theorem}
+                    \overbrace{
+                        \left(
+                            a \beta_V N_V(t) - b \mu_H
+                        \right) I_H
+                        +
+                        \left(
+                            b \beta_H N_H + a \mu_V
+                        \right) I_V
+                    } ^ {:=T_1}
+                }{a I_V + bI_H}
+%                \right \}
+                dt
+                \\
+                & -
+                \left \{
+                    \underbrace{
+                         \dfrac{
+                             \left(
+                                \dfrac{\beta_V}{b}
+                                +
+                                \dfrac{\beta_H}{a}
+                             \right) a b I_V I_H
+                         }{
+                            a I_V + b I_H
+                         }
+                    }_{:=T_2}
+                     -
+                     \left[
+                        \frac{\sigma_V ^ 2}{2}
+                        \left(
+                            \frac{a}{b} N_V ^ \infty
+                        \right) ^2
+                        +
+                        \frac{\sigma_H ^ 2}{2}
+                        \left(
+                            \frac{a}{b}
+                            N_H
+                        \right) ^ 2
+                     \right]
+                \right\}
+                dt
+                \\
+                & +
+                \sigma_V 
+                \frac{S_V I_H}{a I_V + b I_H}
+                d B_t ^ V
+                +
+                \sigma_H 
+                \frac{(N_H - I_H) I_V}{a I_V + b I_H}
+                d B_t ^ H .
+        \end{aligned}
+    \end{equation}
+    We first deal with the numerator term $T_1$. Note that our parameters $a$, 
+    $b$ are solution of the linear system
+    \begin{equation*}
+        \underbrace{
+            \begin{pmatrix}
+                \beta_V \left(N_V ^ {\infty} -\varepsilon\right)
+                    & - \mu_H 
+                \\
+                - \mu_V
+                    & \beta_H N_H
+            \end{pmatrix}
+        }_{:=A}
+%
+        \begin{pmatrix}
+            a
+            \\
+            b
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \mathcal{R}_0 ^ S - 1
+            \\
+            \mathcal{R}_0 ^ S - 1
+        \end{pmatrix},
+    \end{equation*}
+    that is,
+    \begin{equation} \label{eqn:ab_as_linear_solution}
+        \begin{aligned}
+            \begin{pmatrix}
+                a
+                \\
+                b
+            \end{pmatrix}
+            & =
+            \frac{1}{\det(A)}
+            \begin{pmatrix}
+                \beta_H N_H
+                    & \mu_H
+                \\
+                \mu_V
+                    & \beta_V \left(N_V ^ {\infty} -\varepsilon\right)
+                    
+            \end{pmatrix}
+            \begin{pmatrix}
+                \mathcal{R}_0 ^ S - 1
+                \\
+                \mathcal{R}_0 ^ S - 1
+            \end{pmatrix}
+            \\
+            & =
+            \frac{\mathcal{R}_0 ^ S - 1}{\det(A)}
+            \begin{pmatrix}
+                \beta_H N_H + \mu_H
+                \\
+                \beta_V \left(N_V ^ {\infty} -\varepsilon\right)
+            \end{pmatrix}
+            \\
+            & =
+            \frac{1}{\mu_V \mu_H}
+            \begin{pmatrix}
+                \beta_H N_H + \mu_H
+                \\
+                \beta_V \left(N_V ^ {\infty} -\varepsilon\right)
+            \end{pmatrix}.
+        \end{aligned}
+    \end{equation}
+\end{proof}
