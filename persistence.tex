@@ -68,6 +68,8 @@
     \begin{align*}
         &\liminf_{t \to \infty}
             (a I_V + b I_H) > 0, \\
+            \text{where }&
+            \\
             & a:= \frac{\beta_H N_H + \mu_H}{\mu_V \mu_H},
             \quad
             b:=
@@ -123,10 +125,9 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     Let $N_V(t):= I_V(t) + S_V(t)$. Substituting the relation
-    $S_V(t)= N_V(t) - I_V(t)$ in the formula \eqref{eqn:ito_persistence} %
-    % and applying condition
-    and after algebraic manipulations, we get
-    \begin{equation}
+    $S_V(t)= N_V(t) - I_V(t)$ in the formula \eqref{eqn:ito_persistence}, %
+    after algebraic manipulations, we get
+    \begin{equation}\label{eqn:ito_bound_1}
         \begin{aligned}
             d \ln \rho
                 \geq &
@@ -145,21 +146,22 @@
 %                \right \}
                 dt
                 \\
-                & -
+                &-
                 \left \{
                     \underbrace{
-                         \dfrac{
-                             \left(
-                                \dfrac{\beta_V}{b}
-                                +
-                                \dfrac{\beta_H}{a}
-                             \right) a b I_V I_H
-                         }{
+                        \left(
+                            \dfrac{\beta_V}{b}
+                            +
+                            \dfrac{\beta_H}{a}
+                        \right)
+                        \dfrac{
+                            a b I_V I_H
+                        }{
                             a I_V + b I_H
-                         }
+                        }
                     }_{:=T_2}
-                     -
-                     \left[
+                    +
+                    \left[
                         \frac{\sigma_V ^ 2}{2}
                         \left(
                             \frac{a}{b} N_V ^ \infty
@@ -170,7 +172,7 @@
                             \frac{a}{b}
                             N_H
                         \right) ^ 2
-                     \right]
+                    \right]
                 \right\}
                 dt
                 \\
@@ -184,6 +186,10 @@
                 d B_t ^ H .
         \end{aligned}
     \end{equation}
+    \todo{
+        Integrate here and relabel terms $T_i$.
+    }
+%%%%%
     We first deal with the numerator term $T_1$. Note that our parameters $a$, 
     $b$ are solution of the linear system
     \begin{equation*}
@@ -250,4 +256,100 @@
             \end{pmatrix}.
         \end{aligned}
     \end{equation}
+%
+%
+%
+%
+    Thus we can write $T_1$ as
+    \begin{equation} \label{eqn:T1_equivalence}
+        T_1 = (\mathcal{R}_0 ^ S - 1)(I_V + I_H).
+    \end{equation}
+    
+    Now we work the term $T_2$. On account of the relation between geometric
+    and arithmetic mean
+    $$
+        \sqrt[n]{a_1  \cdots a_n}
+        \leq
+        \dfrac{1}{n}
+        \sum_{i=1} ^ n
+            a_i,
+        \quad
+        a_1,\dots, a_n \geq 0,
+    $$
+    we deduce that
+    \begin{equation} \label{eqn:T_2 bound}
+        T_2=
+        -
+        \left(
+            \dfrac{\beta_V}{a}
+            +
+            \dfrac{\beta_H}{b}
+        \right)
+        \frac{
+            a I_V b I_H
+        }{
+            aI_V + bI_H
+        }
+        \geq
+        -\frac{1}{4}
+        \left(
+            \dfrac{\beta_V}{a}
+            +
+            \dfrac{\beta_H}{b}
+        \right)
+        \left(
+            a I_V + b I_H
+        \right) .
+    \end{equation}
+
+    Substituting the relations 
+    \eqref{eqn:T1_equivalence} and \eqref{eqn:T_2 bound} in 
+    \eqref{eqn:ito_bound_1}, and applying \Cref{ass:persistence}
+    we obtain
+    \begin{equation} \label{eqn:ito_wit_Ti_bounds}
+        \begin{aligned}
+            d \ln \rho
+            \geq &
+            \frac{
+                \mathcal{R}_0 ^ S - 1
+            }{
+                a b
+            }
+            -
+            \left[
+                \frac{\sigma_V ^ 2}{2}
+                \left(
+                    \frac{a}{b} N_V ^ \infty
+                \right) ^2
+                +
+                \frac{\sigma_H ^ 2}{2}
+                \left(
+                    \frac{b}{a}
+                    N_H
+                \right) ^ 2
+            \right]
+            \\
+            &
+            -\frac{1}{4}
+            \left(
+                \dfrac{\beta_V}{a}
+                +
+                \dfrac{\beta_H}{b}
+            \right)
+            \left(
+                a I_V + b I_H
+            \right)
+            \\
+            & +
+            \sigma_V 
+            \frac{S_V I_H}{a I_V + b I_H}
+            d B_t ^ V
+            +
+            \sigma_H 
+            \frac{(N_H - I_H) I_V}{a I_V + b I_H}
+            d B_t ^ H .
+        \end{aligned}
+    \end{equation}
+    Thus, integrating the both sides of inequality 
+    \eqref{eqn:ito_wit_Ti_bounds} we arrive at
 \end{proof}
