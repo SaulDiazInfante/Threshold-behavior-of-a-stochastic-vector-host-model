@@ -127,39 +127,39 @@
     Let $N_V(t):= I_V(t) + S_V(t)$. Substituting the relation
     $S_V(t)= N_V(t) - I_V(t)$ in the formula \eqref{eqn:ito_persistence}, %
     after algebraic manipulations, we get
-    \begin{equation}\label{eqn:ito_bound_1}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{equation} \label{eqn:ito_bound_1}
         \begin{aligned}
             d \ln \rho
                 \geq &
-%                \left\{
                 \frac{
-                    \overbrace{
-                        \left(
-                            a \beta_V N_V(t) - b \mu_H
-                        \right) I_H
-                        +
-                        \left(
-                            b \beta_H N_H + a \mu_V
-                        \right) I_V
-                    } ^ {:=T_1}
+%                    \overbrace{
+                    \left(
+                        a \beta_V N_V(t) - b \mu_H
+                    \right) I_H
+                    +
+                    \left(
+                        b \beta_H N_H + a \mu_V
+                    \right) I_V
+%                    } ^ {:=T_1}
                 }{a I_V + bI_H}
-%                \right \}
                 dt
                 \\
                 &-
                 \left \{
-                    \underbrace{
-                        \left(
-                            \dfrac{\beta_V}{b}
-                            +
-                            \dfrac{\beta_H}{a}
-                        \right)
-                        \dfrac{
-                            a b I_V I_H
+%                    \underbrace{
+                    \left(
+                        \dfrac{\beta_V}{b}
+                        +
+                        \dfrac{\beta_H}{a}
+                    \right)
+                    \dfrac{
+                        a b I_V I_H
                         }{
                             a I_V + b I_H
                         }
-                    }_{:=T_2}
+%                    }_{:=T_2}
                     +
                     \left[
                         \frac{\sigma_V ^ 2}{2}
@@ -186,12 +186,104 @@
                 d B_t ^ H .
         \end{aligned}
     \end{equation}
-    \todo{
-        Integrate here and relabel terms $T_i$.
-    }
-%%%%%
-    We first deal with the numerator term $T_1$. Note that our parameters $a$, 
-    $b$ are solution of the linear system
+    Integrating both sides of \eqref{eqn:ito_bound_1} we arrive at
+    %
+    \begin{equation} \label{eqn:integral_ito_bound}
+        \begin{aligned}
+            \ln \rho(t) - \ln \rho(0)
+                \geq &
+                \underbrace{
+                    \int_{0}^{t}
+                        \frac{
+                            \left(
+                                a \beta_V N_V(t) - b \mu_H
+                            \right) I_H
+                            +
+                            \left(
+                                b \beta_H N_H + a \mu_V
+                            \right) I_V
+                        }{a I_V + bI_H}
+                        \ d u
+                }_{:= M_t^1}
+                \\
+                &-
+                \left(
+                    \dfrac{\beta_V}{b}
+                    +
+                    \dfrac{\beta_H}{a}
+                \right)
+                \underbrace{
+                    \int_{0} ^ t
+                        \dfrac{
+                            a b I_V I_H
+                            }{
+                                a I_V + b I_H
+                            }
+                    \ du
+                }_{:= M_t^2}
+                \\
+                & +
+                \left[
+                    \frac{\sigma_V ^ 2}{2}
+                    \left(
+                        \frac{a}{b} N_V ^ \infty
+                    \right) ^2
+                    +
+                    \frac{\sigma_H ^ 2}{2}
+                    \left(
+                        \frac{a}{b}
+                        N_H
+                    \right) ^ 2
+                \right]
+                t
+                \\
+                &
+                +
+                \underbrace{
+                    \int_{0} ^ t
+                        \sigma_V
+                        \frac{S_V I_H}{a I_V + b I_H}
+                    d B_u ^ V
+                }_{:= M_t ^ V}
+                +
+                \underbrace{
+                    \int_{0} ^ t
+                        \sigma_H 
+                        \frac{(N_H - I_H) I_V}{a I_V + b I_H}
+                    d B_u ^ H 
+                }_{M_t ^ H}.
+        \end{aligned}
+    \end{equation}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    On account of \Cref{lem:exponential_growth}, wee see that $N_V(t)$ is an
+    bounded and increasing function for all initial condition
+    $(S_V, I_V, I_H)^ \top  \in \mathbb{D}$. Hence given $\varepsilon >0$, exist
+    a time $\tau_\varepsilon$ such that
+    $$
+        N_V(t) \geq N_V - \varepsilon, \quad t\geq \tau_\varepsilon.
+    $$
+    The, we get
+    \begin{equation} \label{eqn:tau_bound}
+        M_t ^ 1 \geq 
+            \int_{\1{\tau_\varepsilon \leq u \leq t}}
+                \frac{
+%                    \overbrace{
+                    \left(
+                        a \beta_V (N_V ^ \infty - \varepsilon) - b \mu_H
+                    \right) I_H
+                    +
+                    \left(
+                        b \beta_H N_H + a \mu_V
+                    \right) I_V
+%                    } ^ {:=T_1}
+                }{a I_V + bI_H}
+                du .
+    \end{equation}
+    Now we deal with the numerator of the above integral. Let $\varepsilon$
+    as in \Cref{ass:persistence}. Note that
+    parameters $a$, $b$ are solution of
     \begin{equation*}
         \underbrace{
             \begin{pmatrix}
@@ -260,13 +352,22 @@
 %
 %
 %
-    Thus we can write $T_1$ as
+    By \Cref{ass:persistence}, $a>1$ and $b>1$. Thus from inequality
+    \eqref{eqn:tau_bound} we deduce that
     \begin{equation} \label{eqn:T1_equivalence}
-        T_1 = (\mathcal{R}_0 ^ S - 1)(I_V + I_H).
+        M_1 \geq 
+        \int_{\1{\tau_\varepsilon \leq u \leq t}}
+        \dfrac{
+            (\mu_V \mu_H) ^ 2 (\mathcal{R}_0 ^ S - 1)
+        }{
+            (\beta_H N_H + \mu_H) 
+            (\beta_V \left(N_V ^ {\infty} -\varepsilon\right))
+        }
+         du.
     \end{equation}
     
-    Now we work the term $T_2$. On account of the relation between geometric
-    and arithmetic mean
+    Now we work the integral $M_t^2$. 
+    On account of the relation between geometric and arithmetic mean
     $$
         \sqrt[n]{a_1  \cdots a_n}
         \leq
@@ -276,46 +377,38 @@
         \quad
         a_1,\dots, a_n \geq 0,
     $$
-    we deduce that
+    we see that
     \begin{equation} \label{eqn:T_2 bound}
-        T_2=
-        -
-        \left(
-            \dfrac{\beta_V}{a}
-            +
-            \dfrac{\beta_H}{b}
-        \right)
-        \frac{
-            a I_V b I_H
-        }{
-            aI_V + bI_H
-        }
-        \geq
+        M_t^2\geq
         -\frac{1}{4}
         \left(
             \dfrac{\beta_V}{a}
             +
             \dfrac{\beta_H}{b}
         \right)
+        \int_{0} ^ t
         \left(
             a I_V + b I_H
         \right) .
     \end{equation}
-
-    Substituting the relations 
+    Thus, combining the relations 
     \eqref{eqn:T1_equivalence} and \eqref{eqn:T_2 bound} in 
-    \eqref{eqn:ito_bound_1}, and applying \Cref{ass:persistence}
-    we obtain
-    \begin{equation} \label{eqn:ito_wit_Ti_bounds}
+    \eqref{eqn:ito_bound_1} we obtain
+    \begin{equation} \label{eqn:ito_wit_Mi_bounds}
         \begin{aligned}
-            d \ln \rho
-            \geq &
-            \frac{
-                \mathcal{R}_0 ^ S - 1
-            }{
-                a b
-            }
+            \ln \rho(t) 
             -
+            \ln \rho(0)
+            \geq &
+                \dfrac{
+                    (\mu_V \mu_H) ^ 2 (\mathcal{R}_0 ^ S - 1)
+                }{
+                    (\beta_H N_H + \mu_H) 
+                    (\beta_V \left(N_V ^ {\infty} -\varepsilon\right))
+                }
+            (t - \tau_\varepsilon)
+            \\
+            & -
             \left[
                 \frac{\sigma_V ^ 2}{2}
                 \left(
@@ -328,6 +421,7 @@
                     N_H
                 \right) ^ 2
             \right]
+            t
             \\
             &
             -\frac{1}{4}
@@ -336,20 +430,84 @@
                 +
                 \dfrac{\beta_H}{b}
             \right)
-            \left(
-                a I_V + b I_H
-            \right)
+            \int_{0} ^ t
+                \left(
+                    a I_V + b I_H
+                \right)
+                du
             \\
             & +
-            \sigma_V 
-            \frac{S_V I_H}{a I_V + b I_H}
-            d B_t ^ V
-            +
-            \sigma_H 
-            \frac{(N_H - I_H) I_V}{a I_V + b I_H}
-            d B_t ^ H .
+            M_t ^ V + M_t ^ H.
         \end{aligned}
     \end{equation}
-    Thus, integrating the both sides of inequality 
-    \eqref{eqn:ito_wit_Ti_bounds} we arrive at
+    To short notation we define
+    $$
+        \varUpsilon(t): =
+            M_t ^ V + M_t^H
+            -
+            \dfrac{
+                (\mu_V \mu_H) ^ 2 (\mathcal{R}_0 ^ S - 1)
+            }{
+                (\beta_H N_H + \mu_H) 
+                (\beta_V \left(N_V ^ {\infty} -\varepsilon\right))
+            }\tau_\varepsilon + \ln \rho(0),
+    $$
+    then we rewrite \eqref{eqn:ito_wit_Mi_bounds} as
+    \begin{equation} \label{eqn:ito_wit_Mi_bounds_new_notation}
+        \begin{aligned}
+            \ln \rho(t) 
+            \geq &
+                \underbrace{
+                    \left[
+                        \dfrac{
+                            (\mu_V \mu_H) ^ 2 (\mathcal{R}_0 ^ S - 1)
+                        }{
+                            (\beta_H N_H + \mu_H) 
+                            (\beta_V \left(N_V ^ {\infty} -\varepsilon\right))
+                        }
+                        -
+                        \frac{\sigma_V ^ 2}{2}
+                        \left(
+                            \frac{a}{b} N_V ^ \infty
+                        \right) ^2
+                        -
+                        \frac{\sigma_H ^ 2}{2}
+                        \left(
+                            \frac{b}{a}
+                            N_H
+                        \right) ^ 2
+                    \right]
+                }_{:= \lambda}
+                t
+            \\
+            &
+            \underbrace{
+                -\frac{1}{4}
+                \left(
+                    \dfrac{\beta_V}{a}
+                    +
+                    \dfrac{\beta_H}{b}
+                \right)
+            }_{:= \lambda_0}
+            \int_{0} ^ t
+                \left(
+                    a I_V + b I_H
+                \right)
+                du
+            +
+            \varUpsilon(t).
+        \end{aligned}
+    \end{equation}
+    Note that by \Cref{ass:persistence} we have that $\lambda > 0$.
+    Further, by the strong law of large number for martingales \cite{Mao2007},
+    $$
+        \lim_{t \to \infty}
+            \frac{1}{t}
+            \varUpsilon (t) =0
+    $$
+    Therefore Theorem (*) implies that
+    $$
+        \liminf_{t \to \infty} \rho(t) > \dfrac{ \lambda }{ \lambda_0} >0,
+    $$
+    that is, disease population persist as our Theorem requires.
 \end{proof}
