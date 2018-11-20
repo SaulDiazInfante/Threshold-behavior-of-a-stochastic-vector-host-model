@@ -62,6 +62,17 @@
     %
 \end{assumption}
 
+\begin{definition}
+    We say that a population $\rho(t)$ is asymptotically mean persistent
+    if
+    $$
+        \liminf_{t \to \infty}
+            \frac{1}{t}
+                \int_{0} ^ t
+                    \rho(u) du
+        > 0.
+    $$
+\end{definition}
 \begin{theorem}
     Let \Cref{ass:persistence} hold, then the solution of SDE model
     \eqref{eqn:sto_vector_host} satisfy
@@ -126,7 +137,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     Let $N_V(t):= I_V(t) + S_V(t)$. Substituting the relation
     $S_V(t)= N_V(t) - I_V(t)$ in the formula \eqref{eqn:ito_persistence}, %
-    after algebraic manipulations, we get
+    and after algebraic manipulations, we get
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{equation} \label{eqn:ito_bound_1}
@@ -267,9 +278,8 @@
     The, we get
     \begin{equation} \label{eqn:tau_bound}
         M_t ^ 1 \geq 
-            \int_{\1{\tau_\varepsilon \leq u \leq t}}
+            \int_{\1{\tau_\varepsilon \leq t}}
                 \frac{
-%                    \overbrace{
                     \left(
                         a \beta_V (N_V ^ \infty - \varepsilon) - b \mu_H
                     \right) I_H
@@ -277,7 +287,6 @@
                     \left(
                         b \beta_H N_H + a \mu_V
                     \right) I_V
-%                    } ^ {:=T_1}
                 }{a I_V + bI_H}
                 du .
     \end{equation}
@@ -355,8 +364,8 @@
     By \Cref{ass:persistence}, $a>1$ and $b>1$. Thus from inequality
     \eqref{eqn:tau_bound} we deduce that
     \begin{equation} \label{eqn:T1_equivalence}
-        M_1 \geq 
-        \int_{\1{\tau_\varepsilon \leq u \leq t}}
+        M_t ^ 1 \geq 
+        \int_{\1{\tau_\varepsilon \leq t}}
         \dfrac{
             (\mu_V \mu_H) ^ 2 (\mathcal{R}_0 ^ S - 1)
         }{
@@ -499,15 +508,20 @@
         \end{aligned}
     \end{equation}
     Note that by \Cref{ass:persistence} we have that $\lambda > 0$.
-    Further, by the strong law of large number for martingales \cite{Mao2007},
+    Further, by the strong law of large number for martingales 
+    \citet[p. 12,][]{Mao2007},
     $$
         \lim_{t \to \infty}
             \frac{1}{t}
-            \varUpsilon (t) =0
+            \varUpsilon (t) =0.
     $$
+    \todo{add Gronwall type result}
     Therefore Theorem (*) implies that
     $$
-        \liminf_{t \to \infty} \rho(t) > \dfrac{ \lambda }{ \lambda_0} >0,
+        \liminf_{t \to \infty} 
+            \frac{1}{t}\int_0 ^ t 
+                \rho(t) 
+            > \dfrac{ \lambda }{ \lambda_0} >0,
     $$
     that is, disease population persist as our Theorem requires.
 \end{proof}

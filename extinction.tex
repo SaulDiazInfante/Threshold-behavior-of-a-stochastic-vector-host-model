@@ -23,24 +23,23 @@ Our analysis needs the following function and conditions.
         $(S_V(0), I_V(0), I_H(0)) ^{\top} \in \mathbb{D}$,
         $$
             \limsup_{t \to \infty} 
-                \frac{1}{t} I_V(t) = 0 
+                \frac{1}{t} \ln I_V(t) = 0 
                 \quad \text{and} \quad
             \limsup_{t \to \infty} 
-                \frac{1}{t} I_H(t) = 0, \quad 
+                \frac{1}{t} \ln I_H(t) = 0, \quad 
                 \text{
                    a.s.
                 }
         $$
 \end{theorem}        
 \begin{proof}
-    The main idea is, to use a conveniently function and derive the 
-    given conditions. 
+    The main idea is, apply a conveniently function and derive conditions. 
     
-    Let $\rho (S_V, I_V, I_H):= \ln (I_V)$, then the It\^{o} formula 
+    Let $\rho (S_V, I_V, I_H):= \ln I_V$, then the It\^{o} formula 
     gives
     \begin{equation} \label{eqn:ito_noise_extinction}
         \begin{aligned}
-            d \ln(I_V) = & 
+            d \ln I_V = & 
                 \left(
                     \beta_v \frac{S_V I_H}{ I_V} - \mu_V
                     - \frac{1}{2}
@@ -59,12 +58,13 @@ Our analysis needs the following function and conditions.
     %
     %
     %
-    Summing an appropriate zero and applying the operator
+    Summing an appropriate zero and applying the mean operator
     $$
         \left < \cdot \right >_t
         := 
-        \int_{0} ^ t
-            \cdot \ ds,
+            \frac{1}{t}
+            \int_{0} ^ t
+                \cdot \ du,
     $$
     to both sides of relation \eqref{eqn:ito_noise_extinction}, we get
     \begin{equation} \label{eqn:applying_mean_opeartor}
@@ -105,14 +105,17 @@ Our analysis needs the following function and conditions.
     $$
         \lim_{t \to \infty} M_t^V = 0, \quad \text{a.s.}
     $$
-    Thus, from inequality \eqref{eqn:applying_mean_opeartor} we obtain
+    Thus, from inequality \eqref{eqn:applying_mean_opeartor} 
+    and the condition for $\sigma_V, \sigma_H$
+    we obtain
     \begin{equation}\label{eqn:bound_vector_noise}
-        \limsup_{t \to \infty} \ln(I_V(t)) 
+        \limsup_{t \to \infty} 
+            \frac{1}{t}
+            \ln(I_V(t)) 
             \leq
-            \frac{\beta_V}{\sigma_V^2} - \mu_V.           
+            \frac{\beta_V}{\sigma_V^2} - \mu_V < 0,           
     \end{equation}
-    Hence, applying condition for $\sigma_V$ and $\sigma_H$, we obtain the 
-    desired conclusion.
+    that is, the desired conclusion.
 \end{proof}
 %
 %
@@ -210,7 +213,9 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
         \end{aligned}
     \end{equation}
     If the noise intensities $\sigma_V$, $\sigma_H$ satisfies condition 
-    (E\textendash\ref{ass:noise_condition})
+    \textsl{
+        \textbf{(E\textendash\ref{ass:noise_condition})}
+    }
     of \Cref{ass:extinction}, then
     \begin{equation}
         \begin{aligned}
