@@ -149,7 +149,10 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
     we ask the following.
     \begin{enumerate}[\bf{(E\textendash}1)]
         \item 
-            The constants $a$, $b$ of function $\rho$ are positive.
+            The constants $a$, $b$ of function $\rho$ are positive and satisfies
+            $$
+                \mu_V \mu_H < \min \{a, b \}.
+            $$
         \item \label{ass:noise_condition}
             The noise intensities satisfies
             $$
@@ -213,7 +216,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
         \end{aligned}
     \end{equation}
     If the noise intensities $\sigma_V$, $\sigma_H$ satisfies condition 
-    \textsl{
+    \textsc{
         \textbf{(E\textendash\ref{ass:noise_condition})}
     }
     of \Cref{ass:extinction}, then
@@ -238,6 +241,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
 %
 \paragraph{Intro to the extinction Theorem}
 \begin{lemma}
+    \label{lem:quadratic_equation}
     Let \Cref{ass:extinction} hold, 
     and assume that 
     then there is a positive integer number $n$
@@ -268,22 +272,24 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
         = 0.
     \end{equation*}
     Thus, the solution of \eqref{eqn:quadratic_extinction} is
-    $$
+    \begin{equation}
+        \label{eqn:quadratic_solution}
         x^{\dagger} = 
             \frac{\mu_v \mu_H}{
                 \left(
                     \beta_V N_V ^ {\infty} +
-                    \beta_H N_H            
+                    \beta_H N_H
                     -\frac{\mathcal{R}_0 ^ D - 1}{2 ^ n}
                 \right)
             }.
-    $$
+    \end{equation}
     To assure the positivity of $x^{\dagger}$ we consider two cases.
     If $\mathcal{R}_0 ^ D \leq 1$, 
     then $\mathcal{R}_0 - 1 \leq 0$, and $x^{\dagger} >0$.
     Otherwise, if $\mathcal{R}_0 ^ D \geq 1$,
     then taking 
-    $$          
+    \begin{equation}
+        \label{eqn:n_condition}
         n > \frac{1}{\ln 2} 
             \ln
             \left(
@@ -295,7 +301,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                     \right)
                 }    
             \right),
-    $$
+    \end{equation}
     we obtain the positivity of $x^{\dagger}$.
 \end{proof}
 %
@@ -307,6 +313,7 @@ Now we establish our threshold extinction result.
     \eqref{eqn:sto_vector_host} satisfies
     \begin{equation}
         \limsup_{t \to \infty}
+            \frac{1}{t}
             \ln(aI_V + b I_H) < c , \qquad a.s.,
     \end{equation}
     that is, the disease will extinguishes wit probability one.
@@ -316,4 +323,293 @@ Now we establish our threshold extinction result.
 \begin{proof}
     The main idea is to apply \Cref{prp:quadratic_bound} and 
     \Cref{ass:extinction} to the It\^{o} formula of $\rho(S_V, I_V, I_H)$.
+        The It\^{o} formula gives
+    \begin{equation} \label{eqn:ito_extinction} 
+        \begin{aligned}
+          d \ln \rho =&
+            \left \{
+                \dfrac{
+                    a (\beta_V S_V I_H - \mu_V I_V)
+                    +
+                    b [\beta_H (N_H - I_H) I_V - \mu_H I_H]
+                }{a I_V + bI_H}
+            \right \} dt
+            \\
+            & 
+            -
+            \frac{\mu_V  a I_V + \mu_H b I_H}{a I_V + b I_H}
+            dt
+            -
+            \frac{1}{2}
+            \left \{
+                \dfrac{
+                    \left(
+                        a \sigma_V S_V I_H
+                    \right) ^ 2
+                    +
+                    \left[
+                        b \sigma_H (N_H - I_H) I_V
+                    \right] ^2
+                }{
+                    \left( 
+                        a I_V + bI_H
+                    \right) ^ 2
+                }
+            \right \} dt
+            \\
+            & +
+            \sigma_V 
+            \frac{S_V I_H}{a I_V + b I_H}
+            d B_t ^ V
+            +
+            \sigma_H 
+            \frac{(N_H - I_H) I_V}{a I_V + b I_H}
+            d B_t ^ H .
+        \end{aligned}
+    \end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \Cref{prp:quadratic_bound} and \textsc{\textbf{(E\textendash 1)}} of 
+    \Cref{ass:extinction} imply that
+    \begin{equation} 
+        \label{eqn:ito_extinction_bound} 
+        \begin{aligned}
+          d \ln \rho 
+            \leq &
+            \dfrac{
+                \max\{
+                    a, b
+                \}
+            }{
+                \min\{
+                    a, b
+                \}
+            }
+            \left (
+                \beta_V N_V ^ \infty
+                +
+                \beta_H N_H
+            \right ) dt
+            \\
+            & 
+            -
+            \frac{1}{2}
+            \dfrac{
+                \max\{
+                    a, b
+                \}
+            }{
+                \min\{
+                    a, b
+                \}
+            }
+            \left[
+                \left(
+                    \sigma_V N_V ^ \infty
+                \right) ^ 2
+                +
+                \left(
+                    \sigma_H N_H
+                \right) ^2
+            \right] dt
+            \\
+            &
+            -
+            \frac{
+                \mu_V \mu_H (I_V + I_H)
+            }{\max \{a, b\} (I_V + I_H)}
+            dt
+            \\
+            & +
+            \sigma_V 
+            \frac{S_V I_H}{a I_V + b I_H}
+            d B_t ^ V
+            +
+            \sigma_H
+            \frac{(N_H - I_H) I_V}{a I_V + b I_H}
+            d B_t ^ H
+            %
+            \\
+            %
+            % d \ln \rho(t)
+            \leq &
+                \underbrace{
+                    \left[
+                        \dfrac{
+                            \max\{a, b\}
+                        }{
+                            \min\{a, b\}
+                        }
+                        \left (
+                            \beta_V N_V ^ \infty
+                            +
+                            \beta_H N_H
+                        \right )
+                        -
+                        \frac{
+                            \mu_V \mu_H 
+                        }{
+                            \max \{a, b\} 
+                        }
+                     \right]
+                }_{:= T_1}
+                 dt
+            \\
+            &
+            -
+            \frac{1}{2}
+                \dfrac{
+                    \min\{
+                        a, b
+                    \}
+                }{
+                    \min\{
+                        a, b
+                    \}
+                }
+            \left [
+                \left(
+                    \sigma_V N_V ^ \infty
+                \right) ^ 2
+                +
+                \left(
+                    \sigma_H N_H
+                \right) ^2
+            \right ] dt
+            \\
+            & +
+            \sigma_V 
+            \frac{S_V I_H}{a I_V + b I_H}
+            d B_t ^ V
+            +
+            \sigma_H
+            \frac{(N_H - I_H) I_V}{a I_V + b I_H}
+            d B_t ^ H.
+        \end{aligned}
+    \end{equation}
+    According to inequality \eqref{eqn:ito_extinction_bound}, we establish
+    a convenient equation for term $T_1$. 
+    Let $x:= \max \{ a, b\}$ and $y := \min \{a,b\}$. Then we set
+    \begin{equation}
+        \label{eqn:quadratic_equation_T_1}
+        \left (
+            \beta_V N_V ^ \infty
+            +
+            \beta_H N_H
+        \right )\frac{x}{y}
+        -
+        \frac{\mu_V \mu_H}{x} 
+        = \mathcal{R}_0^D - 1,
+    \end{equation}
+    taking $y := \dfrac{x}{2^n}$, with $n$ satisfying \eqref{eqn:n_condition}, 
+    thus, we rewrite equation 
+    \eqref{eqn:quadratic_equation_T_1} as
+    \begin{equation}
+        \label{eqn:quadratic_equation_T_1_quadratic}
+        \left (
+            \beta_V N_V ^ \infty
+            +
+            \beta_H N_H
+        \right ) x ^ 2
+        -
+        (\mathcal{R}_0 ^ D - 1)
+        \frac{x ^ 2}{2 ^ n}
+        -
+        \mu_V \mu_H \frac{x}{2 ^ n} 
+        = 0.
+    \end{equation}
+    By \Cref{lem:quadratic_equation}, taking 
+    $x^\dagger$ as in 
+    of \eqref{eqn:quadratic_equation_T_1_quadratic}
+    and 
+    $$
+        a:= x^\dagger, \quad b:= \frac{1}{2^n} x^{\dagger},
+    $$
+     we get 
+    \begin{equation}\label{eqn:T_1_rzero_d}
+         \dfrac{
+             \max\{a, b\}
+         }{
+             \min\{a, b\}
+         }
+         \left (
+             \beta_V N_V ^ \infty
+             +
+             \beta_H N_H
+         \right )
+         -
+         \frac{
+             \mu_V \mu_H 
+         }{
+             \max \{a, b\} 
+         }
+         = \mathcal{R}_0 ^ D - 1 .
+    \end{equation}
+    Hence, combining \eqref{eqn:ito_extinction_bound} and 
+    \eqref{eqn:T_1_rzero_d},
+    applying the mean operator
+    $$
+        \frac{1}{t} 
+            \int_{0}^{t}
+                \cdot \ 
+            du
+    $$
+     we obtain
+%
+    \begin{equation} 
+    \label{eqn:rzero_d_bound}
+        \begin{aligned}
+            \frac{
+                \ln \rho(t)
+            }{t}
+            \leq &
+                \underbrace{
+                    \mathcal{R}_0 ^ D
+                    -
+                    \frac{1}{2}
+                    \left [
+                        \left(
+                            \sigma_V N_V ^ \infty
+                        \right) ^ 2
+                        +
+                        \left(
+                            \sigma_H N_H
+                        \right) ^2
+                    \right ] - 1
+                }_{=\mathcal{R}_0 ^ S - 1 < 0}
+                \\
+                & +
+                \underbrace{
+                    \frac{1}{t}
+                    \int_{0}^{t}
+                        \sigma_V 
+                        \frac{S_V I_H}{a I_V + b I_H}
+                    d B_u ^ V
+               }_{:=M_t^V}
+                +
+               \underbrace{
+                    \frac{1}{t}
+                    \int_{0}^{t}
+                        \sigma_H
+                        \frac{(N_H - I_H) I_V}{a I_V + b I_H}
+                    d B_u ^ H.
+               }_{:= M_t ^ H}
+        \end{aligned}
+    \end{equation}
+    Since $M_t^V$, $M_t^V$ are martingales, the Strong law of large 
+    numbers for martingales \citet[p. 12, Thm. 3.4]{Mao2007} shows that
+    $$
+        \lim_{t \to \infty}
+            M_t^V = 0 \text{ and }
+        %
+        \lim_{t \to \infty}
+            M_t^H = 0 
+        \quad a.s.
+    $$    
+    Therefore
+    $$
+        \limsup_{t \to \infty}
+            \frac{\ln \rho}{t} <
+            \mathcal{R}_0 ^ S - 1 < 0, \quad a.s.,
+    $$
+    that is, the disease will extinguishes with probability one.
 \end{proof}

@@ -28,7 +28,7 @@
                  \beta_H N_H + \mu_H, \ 
                  \beta_V (N_V ^ {\infty} - \varepsilon) + \mu_V
             \right\}
-            \geq 1
+            \geq 1.
         $
         \item Noise intensities satisfy 
             \textbf{(E\textendash1)} of \Cref{ass:extinction}
@@ -59,7 +59,7 @@
                     } .
             \end{align*}
     \end{enumerate}
-    %
+%
 \end{assumption}
 
 \begin{definition}
@@ -78,8 +78,12 @@
     \eqref{eqn:sto_vector_host} satisfy
     \begin{align*}
         &\liminf_{t \to \infty}
-            (a I_V + b I_H) > 0, \\
-            \text{where }&
+            \frac{1}{t}
+            \int_{0} ^ {t}
+            (a I_V + b I_H) > 0, 
+            \\
+                \text{where }
+            &
             \\
             & a:= \frac{\beta_H N_H + \mu_H}{\mu_V \mu_H},
             \quad
@@ -145,7 +149,6 @@
             d \ln \rho
                 \geq &
                 \frac{
-%                    \overbrace{
                     \left(
                         a \beta_V N_V(t) - b \mu_H
                     \right) I_H
@@ -153,13 +156,11 @@
                     \left(
                         b \beta_H N_H + a \mu_V
                     \right) I_V
-%                    } ^ {:=T_1}
                 }{a I_V + bI_H}
                 dt
                 \\
                 &-
                 \left \{
-%                    \underbrace{
                     \left(
                         \dfrac{\beta_V}{b}
                         +
@@ -170,7 +171,6 @@
                         }{
                             a I_V + b I_H
                         }
-%                    }_{:=T_2}
                     +
                     \left[
                         \frac{\sigma_V ^ 2}{2}
@@ -273,12 +273,14 @@
     $(S_V, I_V, I_H)^ \top  \in \mathbb{D}$. Hence given $\varepsilon >0$, exist
     a time $\tau_\varepsilon$ such that
     $$
-        N_V(t) \geq N_V - \varepsilon, \quad t\geq \tau_\varepsilon.
+        N_V(t) \geq N_V ^ \infty 
+        -
+        \varepsilon, \quad t\geq \tau_\varepsilon.
     $$
-    The, we get
+    Thus,
     \begin{equation} \label{eqn:tau_bound}
         M_t ^ 1 \geq 
-            \int_{\1{\tau_\varepsilon \leq t}}
+            \int
                 \frac{
                     \left(
                         a \beta_V (N_V ^ \infty - \varepsilon) - b \mu_H
@@ -288,6 +290,7 @@
                         b \beta_H N_H + a \mu_V
                     \right) I_V
                 }{a I_V + bI_H}
+                \1{\tau_\varepsilon \leq t}
                 du .
     \end{equation}
     Now we deal with the numerator of the above integral. Let $\varepsilon$
@@ -365,13 +368,14 @@
     \eqref{eqn:tau_bound} we deduce that
     \begin{equation} \label{eqn:T1_equivalence}
         M_t ^ 1 \geq 
-        \int_{\1{\tau_\varepsilon \leq t}}
+        \int_{}
         \dfrac{
             (\mu_V \mu_H) ^ 2 (\mathcal{R}_0 ^ S - 1)
         }{
             (\beta_H N_H + \mu_H) 
             (\beta_V \left(N_V ^ {\infty} -\varepsilon\right))
         }
+        \1{\tau_\varepsilon \leq t}
          du.
     \end{equation}
     
