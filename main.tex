@@ -1,10 +1,11 @@
-\documentclass{amsart}
+%\documentclass{amsart}
+\documentclass[3p,sort&compress,times]{elsarticle}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{enumerate}
 \usepackage{cleveref}
-\usepackage[numbers, sort&compress]{natbib}
+%\usepackage[numbers, sort&compress]{natbib}
 \usepackage{proba}
 \usepackage{cleveref}
 \usepackage{todonotes}
@@ -15,8 +16,13 @@
 \theoremstyle{definition}
 \newtheorem{assumption}{Assumption} 
 \newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\journal{Applied mathematical modelling}
 %
 \begin{document}
+    \input{frontmatter}
     \section{Deterministic base dynamics}
         \input{deterministic_block}
     \section{The stochastic vector-host model}

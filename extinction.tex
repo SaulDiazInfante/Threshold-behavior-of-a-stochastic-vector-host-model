@@ -41,7 +41,7 @@ Our analysis needs the following function and conditions.
         \begin{aligned}
             d \ln I_V = & 
                 \left(
-                    \beta_v \frac{S_V I_H}{ I_V} - \mu_V
+                     \frac{S_V I_H}{ I_V} - \mu_V
                     - \frac{1}{2}
                     \left(
                         \frac{S_V I_H}{I_V}
@@ -78,13 +78,13 @@ Our analysis needs the following function and conditions.
                     \frac{S_V I_H}{I_V} 
                     -
                     \left(
-                        \frac{\beta_V}{\sigma_V ^ 2}
+                        \frac{}{\sigma_V ^ 2}
                     \right) ^ 2
                 \right)
             du
             \\
             & + 
-            \frac{\beta_V}{\sigma_V ^ 2}
+            \frac{}{\sigma_V ^ 2}
             - 
             \mu_V 
             + 
@@ -101,7 +101,7 @@ Our analysis needs the following function and conditions.
 %
     Since the integral in the term $M_t$ is a martingale, 
     the strong law of large numbers for martingales 
-    \citet[p. 12, Thm 3.4]{Mao2007} implies that
+    {\citet[p. 12, Thm 3.4]{Mao2007}} implies that
     $$
         \lim_{t \to \infty} M_t^V = 0, \quad \text{a.s.}
     $$
@@ -113,7 +113,7 @@ Our analysis needs the following function and conditions.
             \frac{1}{t}
             \ln(I_V(t)) 
             \leq
-            \frac{\beta_V}{\sigma_V^2} - \mu_V < 0,           
+            \frac{}{\sigma_V^2} - \mu_V < 0,           
     \end{equation}
     that is, the desired conclusion.
 \end{proof}
@@ -158,15 +158,25 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
             $$
                 \sigma_V \leq 
                     \sqrt{
-                        \frac{b}{a}
-                        \frac{\beta_V}{N_V^{\infty}}
-                        },
+                        \frac{
+                            \min\{a, b\}
+                            \beta_V
+                        }{
+                            \max \{a, b \}
+                            N_V^{\infty}
+                        }
+                    },
                  \quad
                 \sigma_H \leq
                     \sqrt{
-                        \frac{a}{b}
-                        \frac{\beta_H }{N_H
-                    }}.
+                        \frac{
+                            \min\{a, b\}
+                            \beta_H
+                        }{
+                            \max \{a, b \}
+                            N_H
+                        }.
+                    }
             $$
         \item
             \begin{equation*}
@@ -182,7 +192,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                         \\
                     \mathcal{R}_0 ^ D &:=
                             \frac{
-                                \beta_V \beta_H N_V ^ \infty N_H}{\mu_V \mu_H} .
+                                 \beta_H N_V ^ \infty N_H}{\mu_V \mu_H} .
                 \end{aligned}
             \end{equation*}
     \end{enumerate}
@@ -192,27 +202,34 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
 %
 %
 \begin{proposition}\label{prp:quadratic_bound}
-    According to SDE model \eqref{eqn:sto_vector_host},
-    let $\varphi = \varphi (S_V, I_V, I_H)$, 
-    $\psi = \psi (S_V, I_V, I_H)$ 
-    functions defined by
+    With the notation of SDE model \eqref{eqn:sto_vector_host},
+    let
     \begin{equation}
         \begin{aligned}
             \varphi (S_V, I_V, I_H) &:= 
-                \beta_V \frac{S_V I_H}{a I_V + b I_H}
+                 \frac{a S_V I_H}{a I_V + b I_H}
                 - 
                 \frac{\sigma_V ^ 2}{2} 
                 \left(
-                    \frac{S_V I_H}{a I_V + b I_H}
+                    \frac{ a S_V I_H}{a I_V + b I_H}
                 \right) ^2,
             \\
             \psi (S_V, I_V, I_H) &:=
-            \beta_H \frac{(N_H - I_H)  I_V}{a I_V + b I_H}
-                - 
-                \frac{\sigma_H ^ 2}{2} 
+            \beta_H 
+            \frac{
+                b (N_H - I_H)  I_V
+            }{%
+                a I_V + b I_H
+            }
+            - 
+            \frac{\sigma_H ^ 2}{2} 
                 \left(
-                    \frac{(N_H - I_H)  I_V}{a I_V + b I_H}
-                \right) ^2.
+                    \frac{
+                        b (N_H - I_H)  I_V
+                    }{
+                        a I_V + b I_H
+                    }
+                \right) ^ 2.
         \end{aligned}
     \end{equation}
     If the noise intensities $\sigma_V$, $\sigma_H$ satisfies condition 
@@ -221,35 +238,139 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
     }
     of \Cref{ass:extinction}, then
     \begin{equation}
+        \label{eqn:max_min_bounds}
         \begin{aligned}
-          \varphi (S_V, I_V, I_H) & \leq \beta_V \frac{a}{b} N_V ^ 
-          {\infty}
-         - \frac{\sigma_V ^ 2}{2}
-          \left(
-                  \frac{a}{b} N_V ^ {\infty}
-              \right) ^ 2,
-          \\
-          \psi (S_V, I_V, I_H) & \leq
-              \beta_H \frac{b}{a} N_H - \frac{\sigma_H ^ 2}{2}
-              \left(
-                  \frac{b}{a} N_H
-              \right) ^ 2,
+            \varphi (S_V, I_V, I_H) 
+            & \leq 
+                \frac{
+                    \max\{a,b\}
+                }{
+                    \min \{a, b\}
+                }
+                  N_V ^ {\infty}
+                - 
+                \frac{\sigma_V ^ 2}{2}
+                \left(
+                    \frac{
+                        \max\{a,b\}
+                    }{
+                        \min \{a, b\}
+                    } N_V ^ {\infty}
+                \right) ^ 2,
+            \\
+            \psi (S_V, I_V, I_H) 
+            & \leq
+                \frac{
+                    \max\{a,b\}
+                }{
+                    \min \{a, b\}
+                }
+                \beta_H  N_H - \frac{\sigma_H ^ 2}{2}
+                    \left(
+                        \frac{
+                            \max\{a,b\}
+                        }{
+                            \min \{a, b\}
+                        }
+                        N_H
+                  \right) ^ 2,
         \end{aligned}
     \end{equation}
     for all $(S_V, I_V, I_H)^{\top}$ in the invariant set $\mathbb{D}$.
 \end{proposition}
+\begin{proof}
+    The main idea is to prove that
+    \begin{equation}
+        \label{eqn:phi_difference}
+        \frac{
+            \max\{a,b\}
+        }{
+            \min \{a, b\}
+        }
+          N_V ^ {\infty}
+        - 
+        \frac{\sigma_V ^ 2}{2}
+        \left(
+            \frac{
+                \max\{a,b\}
+            }{
+                \min \{a, b\}
+            } N_V ^ {\infty}
+        \right) ^ 2
+        -
+        \varphi (S_V, I_V, I_H) 
+        \geq 
+        0.
+    \end{equation}
+    We rewrite the left hand side of \eqref{eqn:phi_difference} as
+%
+    \begin{equation}
+    \label{eqn:phi_difference_rewritten}
+        \left(
+            \frac{
+                \max \{a,b\}
+            N_V ^ \infty
+            }{
+                \min \{a,b\}
+            }
+%            
+            -
+            \frac{ a S_V I_H}{a I_V + b I_H}
+        \right)
+        \left[
+            \beta_V
+            -
+            \frac{\sigma_V ^ 2}{2}
+            \left(
+                \frac{
+                    \max \{a,b\}
+                    N_V ^ \infty
+                }{
+                    \min \{a,b\}
+                }
+                +
+                \frac{a S_V I_H}{a I_V + b I_H}
+            \right)
+        \right].
+    \end{equation}
+%
+    From \Cref{lem:exponential_growth} we see that
+    $S_V \approx N_V ^ \infty$ if and only if $I_V \approx 0$. Consequently,
+    \begin{equation}\label{eqn:phi_first_term_bound}
+        \beta_V
+            \frac{a S_V I_H}{a I_V + b I_H}
+        \leq
+         \beta_V
+            \frac{a N_V ^ \infty I_H}{b I_H}
+        \leq
+            \frac{
+                \max \{ a,b \} 
+            }{
+                \min\{ a, b\}
+            }
+             N_V ^ \infty.
+    \end{equation}
+    Thus, inequality \eqref{eqn:phi_first_term_bound} proves
+    positivity of the first factor in \eqref{eqn:phi_difference_rewritten},
+    and \textsc{ \textbf{(E\textendash 1)}} proves the positivity of the 
+    second.
+    
+        The same reasoning applies to obtain the second inequality in 
+    \eqref{eqn:max_min_bounds}.
+\end{proof}
+
+
 %
 \paragraph{Intro to the extinction Theorem}
 \begin{lemma}
     \label{lem:quadratic_equation}
     Let \Cref{ass:extinction} hold, 
-    and assume that 
-    then there is a positive integer number $n$
-    such that the equation
+    and assume that exist a positive integer number $n$
+    such that 
     \begin{equation}\label{eqn:quadratic_extinction}
         2^n
         \left(
-            \beta_V N_V^{\infty} +
+             N_V^{\infty} +
             \beta_H N_H
         \right) x
         - \frac{\mu_V \mu_H}{x}
@@ -261,14 +382,12 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
     has a positive solution $x=x^\dagger$. 
 \end{lemma}
 \todo{Write the fucking argument}
-\begin{proof}
-    %
-\end{proof}
+%
 \begin{proof}
     We can rewrite \eqref{eqn:quadratic_extinction} as
     \begin{equation*}
         \left(
-            \beta_V N_V ^ {\infty} +
+             N_V ^ {\infty} +
             \beta_H N_H            
             -\frac{\mathcal{R}_0 ^ D - 1}{2 ^ n}
         \right) x ^ 2
@@ -281,7 +400,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
         x^{\dagger} = 
             \frac{\mu_v \mu_H}{
                 \left(
-                    \beta_V N_V ^ {\infty} +
+                     N_V ^ {\infty} +
                     \beta_H N_H
                     -\frac{\mathcal{R}_0 ^ D - 1}{2 ^ n}
                 \right)
@@ -300,7 +419,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                 \displaystyle
                 \frac{\mathcal{R}_0 ^ D}{
                     \left(
-                        \beta_V N_V ^ {\infty} +
+                         N_V ^ {\infty} +
                         \beta_H N_H
                     \right)
                 }    
@@ -333,7 +452,7 @@ Now we establish our threshold extinction result.
           d \ln \rho =&
             \left \{
                 \dfrac{
-                    a (\beta_V S_V I_H - \mu_V I_V)
+                    a ( S_V I_H - \mu_V I_V)
                     +
                     b [\beta_H (N_H - I_H) I_V - \mu_H I_H]
                 }{a I_V + bI_H}
@@ -389,7 +508,7 @@ Now we establish our threshold extinction result.
                 \}
             }
             \left (
-                \beta_V N_V ^ \infty
+                 N_V ^ \infty
                 +
                 \beta_H N_H
             \right ) dt
@@ -444,7 +563,7 @@ Now we establish our threshold extinction result.
                             \min\{a, b\}
                         }
                         \left (
-                            \beta_V N_V ^ \infty
+                             N_V ^ \infty
                             +
                             \beta_H N_H
                         \right )
@@ -496,7 +615,7 @@ Now we establish our threshold extinction result.
     \begin{equation}
         \label{eqn:quadratic_equation_T_1}
         \left (
-            \beta_V N_V ^ \infty
+             N_V ^ \infty
             +
             \beta_H N_H
         \right )\frac{x}{y}
@@ -510,7 +629,7 @@ Now we establish our threshold extinction result.
     \begin{equation}
         \label{eqn:quadratic_equation_T_1_quadratic}
         \left (
-            \beta_V N_V ^ \infty
+             N_V ^ \infty
             +
             \beta_H N_H
         \right ) x ^ 2
@@ -536,7 +655,7 @@ Now we establish our threshold extinction result.
              \min\{a, b\}
          }
          \left (
-             \beta_V N_V ^ \infty
+              N_V ^ \infty
              +
              \beta_H N_H
          \right )
