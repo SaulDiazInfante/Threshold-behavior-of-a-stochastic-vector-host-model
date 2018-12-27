@@ -20,7 +20,8 @@
             + \sigma_H (N_H - I_H) I_V d B^H_t .
    \end{aligned}
 \end{equation}
-
+%
+%
 \begin{lemma} \label{lem:exponential_growth}
     With the same notation of SDE \eqref{eqn:sto_vector_host},
     let 
@@ -31,7 +32,8 @@
             &&  N_V^{\infty}= \dfrac{\Lambda_V}{\mu_V}.
         \end{aligned}
     \end{equation*}
-    Then, the whole vector population satisfies
+    Then, for all initial condition $N_V ^ 0 $ in $(0, N_V ^ \infty]$,
+    the whole vector population satisfies
     $$
         N_V(t) = 
             N_V ^ \infty
@@ -39,7 +41,6 @@
             \left(
                 N_V ^ 0 - N_V ^ \infty
             \right)
-            \exp(-\mu t),
+            \exp(-\mu t), \quad t \geq 0
     $$
-    for all initial condition $N_V ^ 0 $ in $(0, N_V ^ \infty]$.
 \end{lemma}

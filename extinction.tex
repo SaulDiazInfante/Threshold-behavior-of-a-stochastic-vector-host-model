@@ -4,20 +4,24 @@ Our analysis needs the following function and conditions.
 \end{equation}
 
 \begin{theorem}[Extinction by noise]
-        If 
-        $
-            \displaystyle
-            \min
-                \left \{
-                      \sigma_V, \sigma_H 
-                \right\} 
-                > 
-            \max 
-                \left \{
-                    \sqrt{\frac{\beta_V}{\mu_V}},
-                    \sqrt{\frac{\beta_H}{\mu_H}}
-                \right \}
-        $,
+    If 
+    $
+        \displaystyle
+        \min
+            \left \{
+                  \sigma_V, \sigma_H 
+            \right\} 
+            > 
+        \max 
+            \left \{
+                \sqrt{
+                    \frac{\beta_V ^ 2}{2 \mu_V}
+                },
+                \sqrt{
+                    \frac{\beta_H ^ 2}{2 \mu_H}
+                }
+            \right \}
+    $,
         then the disease will extinguish with probability one.  That is,
         for any initial condition 
         $(S_V(0), I_V(0), I_H(0)) ^{\top} \in \mathbb{D}$,
@@ -41,10 +45,11 @@ Our analysis needs the following function and conditions.
         \begin{aligned}
             d \ln I_V = & 
                 \left(
-                     \frac{S_V I_H}{ I_V} - \mu_V
-                    - \frac{1}{2}
+                    \beta_V
+                    \frac{S_V I_H}{ I_V} - \mu_V
+                    - \frac{\sigma_V ^ 2}{2}
                     \left(
-                        \frac{S_V I_H}{I_V}
+                        \frac{ S_V I_H}{I_V}
                     \right) ^ 2
                 \right) dt
                 %\\
@@ -77,15 +82,17 @@ Our analysis needs the following function and conditions.
                 \left(
                     \frac{S_V I_H}{I_V} 
                     -
-                    \left(
-                        \frac{}{\sigma_V ^ 2}
-                    \right) ^ 2
-                \right)
+                    \frac{\beta_V}{\sigma_V ^ 2}
+                \right)^2
             du
             \\
-            & + 
-            \frac{}{\sigma_V ^ 2}
-            - 
+            & 
+            + 
+            \frac{1}{2}
+            \left(
+                \frac{\beta_V}{\sigma_V}
+            \right) ^ 2
+            -
             \mu_V 
             + 
             \underbrace{
@@ -95,27 +102,70 @@ Our analysis needs the following function and conditions.
                 \int_{0}^t
                     \frac{S_V I_H}{I_V}
                     dB_u^V
-            }_{:=M_t} .                  
+            }_{:=M_t ^ V}
+            \\
+            \leq
+                &
+            \frac{1}{2}
+            \left(
+                \frac{\beta_V}{\sigma_V}
+            \right) ^ 2
+            -
+            \mu_V 
+            + 
+            M_t ^ V.
         \end{aligned}
     \end{equation}
-%
     Since the integral in the term $M_t$ is a martingale, 
     the strong law of large numbers for martingales 
     {\citet[p. 12, Thm 3.4]{Mao2007}} implies that
     $$
-        \lim_{t \to \infty} M_t^V = 0, \quad \text{a.s.}
+        \lim_{t \to \infty} M_t ^ v = 0, \quad \text{a.s.}
     $$
-    Thus, from inequality \eqref{eqn:applying_mean_opeartor} 
-    and the condition for $\sigma_V, \sigma_H$
+    Thus, from relation \eqref{eqn:applying_mean_opeartor} 
     we obtain
-    \begin{equation}\label{eqn:bound_vector_noise}
+    \begin{equation} \label{eqn:bound_vector_noise_V}
         \limsup_{t \to \infty} 
             \frac{1}{t}
             \ln(I_V(t)) 
             \leq
-            \frac{}{\sigma_V^2} - \mu_V < 0,           
+            \frac{1}{2}
+            \left(
+                \frac{\beta_V}{\sigma_V}
+            \right) ^ 2
+             - \mu_V.
     \end{equation}
-    that is, the desired conclusion.
+    A similar argument also shows that
+        \begin{equation}\label{eqn:bound_vector_noise_H}
+            \limsup_{t \to \infty} 
+                \frac{1}{t}
+                \ln(I_H(t)) 
+                \leq
+                \frac{1}{2}
+                \left(
+                    \frac{\beta_H}{\sigma_H}
+                \right) ^ 2
+                - \mu_H.
+        \end{equation}
+    Hence, under condition
+        $
+            \displaystyle
+            \min
+                \left \{
+                      \sigma_V, \sigma_H 
+                \right\} 
+                > 
+            \max 
+                \left \{
+                    \sqrt{
+                        \frac{\beta_V ^ 2}{2 \mu_V}
+                    },
+                    \sqrt{
+                        \frac{\beta_H ^ 2}{2 \mu_H}
+                    }
+                \right \}
+        $, 
+    we obtain the desired conclusion.
 \end{proof}
 %
 %

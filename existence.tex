@@ -1,0 +1,508 @@
+\begin{theorem}\label{thm:regularity}
+	Under \Cref{ass:regularity}, there is a unique solution $\left( 
+	S_{V}(t),I_{V}(t),I_{H}(t) \right)$ to SDE \eqref{eqn:sto_vector_host} 
+	for $t\geq 0$ and this solution remains in $\mathbf{D}$ a.s., that is, 
+	$\left( S_{V}(t),I_{V}(t),I_{H}(t) \right)\in \mathbf{D}$ for all $t\geq 0$ 
+	with probability one.
+\end{theorem}
+%
+%
+%
+\begin{proof}
+    Let 
+    $
+        X(t) = \left( S_{V}(t), I_{V}(t), I_{H}(t) \right)
+    $.
+    For each $n\in \mathbb{N}$ define,
+    \begin{align*}
+        \mathbf{D}_{n}
+        := &
+    \left
+    \lbrace
+	X
+	\in \mathbb{R}^{3}:
+	e^{-n} < S_{V} < N_{V}^{\infty}-e^{-n},
+	\enskip
+	e^{-n} < I_{V} < N_{V}^{\infty}-e^{-n},
+	\enskip
+	S_{V} + I_{V} \leq N_{V}^{\infty},
+	\right.\\
+	&\ 
+	\left.
+%	\enskip
+	e^{-n} < I_{h} < N_{H}-e^{-n},
+	\enskip
+	S_{V} + \alpha I_{H} \leq N_{V}^{\infty}
+        \right\rbrace.
+	\end{align*}
+	Since the drift and diffusion of SDE \eqref{eqn:sto_vector_host} are 
+	locally Lipschitz-continuous and satisfy linear growth condition on 
+	$\mathbf{D}_{n}$, so there is a unique local solution on 
+	$[0,\tau(\mathbf{D}_{n}))$ for any initial condition $X\left(0\right)\in 
+	\mathbf{D}_{n}$. Here, $\tau(\mathbf{D}_{n})$ represents the random time of 
+	the first exit of the stochastic process $X\left(t\right)$ from the set 
+	$\mathbf{D}_{n}$.
+	
+	To prove global existence of the solution, we follow ideas of 
+	\cite{Schurz2015,Acuna2018}. 
+	Let,
+	\begin{align*}
+		V(X) 
+		&:= \left(N_{V}^{\infty} - S_{V}\right) - \ln\left(N_{V}^{\infty} - 
+		S_{V}\right) + S_{V} - \ln S_{V} + I_{v} + \left(N_{V}^{\infty} - 
+		I_{V}\right) - \ln\left(N_{V}^{\infty} - I_{V}\right) + I_{H} +
+		\left(N_{H} - I_{H}\right) - \ln\left(N_{H} - I_{H}\right),
+	\end{align*}
+	defined on
+	$
+		\widetilde{\mathbf{D}} 
+		:=\{ 
+		X
+		\left( 
+		t
+		%I_{h}, I_{a}, S_{v},I_{v} 
+		\right) \in \mathbb{R}^{3};  
+		\ 0\leq t: \ 
+		0< S_{V}< N_{V}^{\infty},
+		0< I_{V}< N_{V}^{\infty},
+		\ 
+		S_{V}+I_{V}\leq N_{V}^{\infty},
+		0 < I_{H}< N_{H},
+		\ 
+		S_{V} + \alpha I_{H}\leq N_{V}^{\infty}
+		\}.
+	$
+	Proceeding in a similar manner to the existence demonstration in 
+	\cite{Acuna2018}, it follows that $V (X) \geq 4$ for all $X	\in 
+	\widetilde{\mathbf{D}}$.
+	
+	Applying the infinitesimal generator to the Lyapunov function 
+	$V\left( X\right)$, we obtain
+	\begin{align*}
+		\mathcal{L}V(X) = &
+			\left[\Lambda_{V} - \beta_{V} S_{V} I_{H} - \mu_{V} S_{V} 
+			\right]\frac{\partial V}{\partial S_{V}}
+			+
+			\left[\beta_{V} S_{V} I_{H} - \mu_{V} 
+			I_{V}\right]\frac{\partial V}{\partial I_{V}}
+			+
+			\left[\beta_{H} \left(N_{H} - I_{H}\right) I_{V} - \mu_{H} 
+			I_{H}\right]\frac{\partial V}{\partial I_{H}}\\
+			&\ 
+			+
+			\frac{1}{2}\sigma_{V}^{2}S_{V}^{2}I_{H}^{2}\left(\frac{\partial^{2}V}{\partial
+			 S_{V}^{2}} + \frac{\partial^{2}V}{\partial I_{V}^{2}}\right)
+			+
+			\frac{1}{2}\sigma_{H}^{2}\left(N_{H} - 
+			I_{H}\right)^{2}I_{V}^{2}\frac{\partial^{2}V}{\partial
+			I_{H}^{2}}\\[0.2cm]
+			= & 
+			\frac{\Lambda_{V} - \beta_{V} S_{V} I_{H} - \mu_{V} 
+			S_{V}}{N_{V}^{\infty} - S_{V}}
+			+
+			\frac{\Lambda_{V} - \beta_{V} S_{V} I_{H} - \mu_{V} S_{V}}{- 
+			S_{V}}
+			+
+			\frac{\beta_{V} S_{V} I_{H} - \mu_{V}I_{V}}{N_{V}^{\infty} - 
+			I_{V}}
+			+
+			\frac{\beta_{H} \left(N_{H} - I_{H}\right) I_{V} - \mu_{H} 
+			I_{H}}{N_{H} - I_{H}}\\
+			&\ 
+			+
+			\frac{1}{2}\sigma_{V}^{2}S_{V}^{2}I_{H}^{2}\left(\frac{1}
+			{\left(N_{V}^{\infty} - S_{V}\right)^{2}} + \frac{1}
+			{S_{V}^{2}} + \frac{1}{\left(N_{V}^{\infty} - 
+			I_{V}\right)^{2}}\right)
+			+
+			\frac{1}{2}\sigma_{H}^{2}\left(N_{H} - 
+			I_{H}\right)^{2}I_{V}^{2}\left(\frac{1}{\left(N_{H} - 
+			I_{H}\right)^{2}}\right)~.
+	\end{align*}
+	Then, removing some negative terms of the above expression, it follows
+	\begin{align*}
+	\mathcal{L}V(X) \leq &
+		\frac{\Lambda_{V} - \mu_{V}S_{V}}{N_{V}^{\infty} - S_{V}}
+		+
+		\beta_{V}I_{H} + \mu_{V}
+		+
+		\frac{\beta_{V} S_{V} I_{H}}{N_{V}^{\infty} - I_{V}}
+		+
+		\beta_{H}I_{V}
+		+
+		\frac{1}{2}\left(\frac{\sigma_{V}^{2}S_{V}^{2}I_{H}^{2}}
+		{\left(N_{V}^{\infty} - S_{V}\right)^{2}} + \sigma_{V}^{2}I_{H}^{2} + 
+		\frac{\sigma_{V}^{2}S_{V}^{2}I_{H}^{2}}{\left(N_{V}^{\infty} - 		
+		I_{V}\right)^{2}} + \sigma_{H}^{2}I_{V}^{2}\right)~.
+	\end{align*}
+	Since 
+    $
+        \displaystyle
+        N_{V}^{\infty} = 
+            \frac{
+                \Lambda_{V}
+            }{\mu_{V}},
+        \quad 
+        S_{V} + I_{V}
+        \leq 
+            N_{V}^{\infty},
+        \quad 
+        S_{V} + \alpha I_{H}
+        \leq 
+            N_{V}^{\infty},
+    $ 
+    wee see that
+    \begin{align*}
+        \mathcal{L}V(X) 
+        \leq &
+            \ \mu_{V}
+            +
+            \beta_{V}I_{H} + \mu_{V}
+            +
+            \beta_{V} I_{H}
+            +
+            \beta_{H} I_{V}
+            +
+            \frac{1}{2}
+            \left(
+                \frac{
+                    \sigma_{V}^{2} S_{V}^{2}
+                }
+                {
+                    \alpha^{2}} 
+                    + \sigma_{V} ^ {2}
+                    I_{H} ^ {2} 
+                    + \sigma_{V} ^ {2} I_{H}^{2} 
+                    + \sigma_{H} ^ {2} I_{V}^{2}
+            \right)
+            \\
+            \leq 
+            &
+            \underbrace{
+                2\mu_{V}
+                +
+                2 \beta_{V} N_{H} 
+                +
+                \beta_{H}
+                N_{V} ^ {\infty}
+                +
+                \frac{1}{2}
+                \left[
+                    \left(
+                        \frac{ 
+                            \sigma_{V}
+                            N_{V} ^ {\infty}
+                        }{
+                            \alpha}
+                    \right) ^ {2} 
+                    +2
+                    \left(
+                        \sigma_{V} 
+                        N_{H}
+                    \right) ^ {2} 
+                    + 
+                    \left(
+                        \sigma_{H}
+                        N_{V} ^ {\infty}
+                    \right) ^ {2}
+                \right]
+            }_{:= 4c} ~.
+    \end{align*}
+    Since $V(X) \geq 4$ for all $X \in \widetilde{\mathbf{D}}$, 
+    using the above inequality, we deduce that 
+    $
+        cV 
+        \left(
+            X 
+        \right)
+        \geq 
+        \mathcal{L} V
+        \left(
+             X 
+        \right)
+    $.
+    
+    Now, for each $n \in \N$, we construct a crescent collection of subsets of 
+    $\mathbf{D}$,
+    $$
+        \mathbf{D}_{n} :=
+        [e^{-n}, N_{V}^{\infty} - e^{-n}] \times
+        [e^{-n}, N_{V}^{\infty} - e^{-n}] \times
+        [e^{-n}, N_{H} - e^{-n}].
+    $$
+    Then
+    $$
+        \widetilde{\mathbf{D}}
+        \backslash\mathbf{D}_{n} 
+        = 
+        \left(
+            0,e^{-n}
+        \right)
+        \bigcup
+        \left(
+            N_{V}^{\infty} - e^{-n},N_{V}^{\infty}
+        \right)
+	\times 
+	\left(0,e^{-n}\right)
+	\bigcup\left(N_{V}^{\infty} - e^{-n},N_{V}^{\infty}\right)
+	\times
+	\left(0,e^{-n}\right)
+	\bigcup\left(N_{H} - e^{-n},N_{H}\right) .
+	$$
+	On the other hand, as $f_{aux}(x) = x - \ln x > 1 \ \forall x > 0$, so 
+	$V\left(X\right)\geq (N_{V}^{\infty} - S_{v}) - \ln(N_{V}^{\infty} - S_{v}) 
+	+ S_{v} - \ln S_{v} + 2, \text{ for all }X\in \widetilde{\mathbf{D}} 
+	\backslash \mathbf{D}_{n}$. Furthermore, since $f_{aux}(\cdot)$ is 
+	an increasing function in $(K-e^{-n},K)$, if follows that
+	\begin{equation*}
+	\begin{aligned}
+	V(X)
+	&\geq 
+	(N_{V}^{\infty} - N_{V}^{\infty} + e^{-n})- \ln(N_{V}^{\infty} - 
+	N_{V}^{\infty} + e^{-n}) + 3\\
+	&\geq e^{-n} + n + 3\\
+	&> n + 3.
+	\end{aligned}
+	\end{equation*}
+	Similarly to the above, as $f_{aux}(\cdot)$ decreases in $(0,e^{-n})$, so
+	\begin{equation*}
+	\begin{aligned}
+	V(X)
+	& \geq e^{-n}- \ln(e^{-n}) + 3 \\
+	& \geq e^{-n} + n + 3 \\
+	& > n + 3.
+	\end{aligned}
+	\end{equation*}
+	Hence, we infer that $V\left(X\right) > n + 3$ for all $X	\in 
+	\widetilde{\mathbf{D}} \backslash\mathbf{D}_{n}$, and consequently
+	\begin{equation}\label{eqn:v_condition}
+	\inf_{
+		X
+		\in 
+		\widetilde{\mathbf{D}}
+		\backslash
+		\mathbf{D}_{n}}
+	V
+	\left( X \right) 
+	> n + 3, \quad \text{for all } n\in \N ~.
+	\end{equation}
+	
+	Next, we prove that $X(t)$ remains in $\widetilde{\mathbf{D}}$. Let $W 
+	\left(t,X(t)\right) = e^{-c(t-t_{0})}V\left(X\right)$ defined on 
+	$[t_{0},\infty) \times \widetilde{\mathbf{D}}$ and $t_{0}\geq 0$ fixed. 
+	Thus, since $\mathcal{L}V\left( X	\right)	\leq cV\left( X	\right)$, we 
+	have that $\mathcal{L}W\left( t,X \right)\leq 0$ for $(t, X(t))\in 
+	[t_{0},\infty) \times \widetilde{\mathbf{D}}$. Now, to obtain an upper 
+	bound for $\mathbb{E}W\left( \tau_{n},X(\tau_{n})\right)$, where 
+	$\tau_{n}(t) := \min \{ t,\tau(\mathbf{D}_{n})\}$, we apply the Dynkin 
+	formula, then
+	\begin{equation} \label{eqn:Dynkin_bound}
+		\begin{aligned}
+			\mathbb{E}
+			W
+			\left( 
+			\tau_{n},
+			X(\tau_{n})
+			\right) 
+			=& \mathbb{E}
+			W
+			\left( 
+			t_{0}, X(t_0)
+			\right)
+			+ 
+			\mathbb{E}
+			\int_{t_{0}}^{\tau_{n}}
+			\mathcal{L} W 
+			\left(
+			s, X(s)
+			\right)ds
+			\\ %
+			\leq& 
+			\mathbb{E}
+			W
+			\left( 
+			t_0, X(t_0)
+			\right)
+			\\ %
+			=& 
+			\mathbb{E}
+			V
+			\left( 
+			X(t_0)
+			\right).
+		\end{aligned}
+    \end{equation}
+    Then, using the inequality~\eqref{eqn:Dynkin_bound} and that $\mathbf{D}_{n}
+    \subset \mathbf{D}_{n+1}$, it follows
+    \begin{align*}
+        \mathbb{P}
+        \left(
+            \tau(\widetilde{\mathbf{D}}) < t 
+        \right)
+        &\leq 
+        \mathbb{P}
+        \left(
+            \tau(\mathbf{D}_{n})<t 
+        \right)
+        \\ %
+        & = 
+        \mathbb{E}
+        \left(
+            \1{\tau_{n} < t}
+        \right)
+        \\ %
+        &\leq 
+        \mathbb{E}
+        \left( 
+            e ^ {c(t - \tau_{n})}
+            \frac{
+                V
+                \left(
+                    X(\tau_{n})
+                \right)
+            }{
+                \inf
+                    \limits_{
+                        X \in 
+                        \widetilde{\mathbf{D}}
+                        \backslash \mathbf{D}_{n}
+                    }
+                V
+                \left( 
+                    X
+                \right)} 
+                \1{\tau_{n}<t}
+        \right)
+        \\
+        &\leq 
+        \frac{
+            e^{ c (t - t_{0} )}
+            \mathbb{E}V
+            \left( 
+                X(t_0)
+            \right)
+        }
+        {
+            \inf
+            \limits_{
+                X
+                \in
+                \widetilde{\mathbf{D}}
+                \backslash 
+                \mathbf{D}_{n}} 
+                V
+            \left( 
+                X
+            \right)
+        }
+        \\ %
+        &\leq
+        \frac{
+            e^{c(t-t_{0})}
+            \mathbb{E} V
+            \left(
+                X(t_0)
+            \right)
+        }{
+            n + 3
+        },
+\end{align*}
+then, letting $n \to \infty$, gives $\mathbb{P}(\tau_{n}<t)\rightarrow 0$, 
+for all $\left( X(t_{0})\right)\in \mathbf{D}_{n}$ and fixed $t\in 
+[t_{0},\infty)$. Furthermore, by the above inequality, we conclude that 
+$\mathbb{P}(\tau(\widetilde{\mathbf{D}})=\infty)=1$.
+
+Thus, we have proved that, for all $t \geq 0$ and initial condition on 
+$\widetilde{\mathbf{D}}$, the invariance property and the global existence of 
+the solution $X(t)$ on $\widetilde{\mathbf{D}}$ is satisfied with probability 
+one.\todo{Falta agregar la continuidad pero agregando los teoremas a usar en el 
+apéndice}
+
+Note that the cases $I_{H} = 0$, $S_{V} = N_{V}^{\infty}$ and $I_{V} = 0$ are 
+not in $\widetilde{\mathbf{D}}$. So, we discuss these cases below.
+\begin{enumerate}[{(CASE-}I)]
+	\item 
+	We first study the case $I_{H} = 0$. With this assumption, 
+	SDE~\eqref{eqn:sto_vector_host} becomes an ODE
+	\begin{equation}\label{IH:0}
+		\begin{aligned}
+			dS_{V} 
+			=&
+			\left[
+			\Lambda_{V} - \mu_{V}S_{V}
+			\right]dt 
+			\\
+			dI_{V} 
+			=&
+			- \mu_{V} I_{V}dt~.
+		\end{aligned}
+	\end{equation}
+	Note that \Cref{IH:0} is lineal, therefore has a unique continuous global 
+	solution in 
+	$$
+		\mathbf{D}_{1} := 
+		\left\{ 
+		\left( 
+		S_{V}(t),
+		I_{V}(t) 
+		\right)
+		\in \mathbb{R}^{2};
+		\ 0\leq t: \ 0< S_{V} < N_{V}^{\infty},\ 
+		0< I_{V} < N_{V}^{\infty},\ 
+		S_{V} + I_{V}\leq N_{V}^{\infty}
+		\right\}.
+		$$
+%
+	\item
+	When $I_{V} = 0$, the SDE~\eqref{eqn:sto_vector_host} becomes
+	\begin{equation} \label{IV:0}
+		\begin{aligned}
+			d S_{V} &= 
+			\left [
+			\Lambda_{V} - \beta_{V} S_{V} I_{H} - \mu_{V} S_{V} 
+			\right ] dt
+			- \sigma_{V} S_{V} I_{H} dB_{t}^{V},
+			\\
+			d I_{H} &= 
+			- \mu_{H} I_{H} dt .
+		\end{aligned}
+	\end{equation}
+		Let 
+		$
+		\mathbf{D}_{2} := 
+		\left\{ 
+		\left( 
+		S_{V}(t),
+		I_{H}(t) 
+		\right)
+		\in \mathbb{R}^{2};
+		\ 0\leq t :
+		\ 0<S_{V}< N_{V}^{\infty},
+		\ 0< I_{H}< N_{H},		 
+		\ S_{V} + \alpha I_{H} \leq N_{V}^{\infty}
+		\right\}
+		$ 
+		the set over which is defined the SDE \eqref{IV:0}, and the Lyapunov 
+		function
+		$$
+		V_{1}
+		\left( 
+		S_{V},I_{H} 
+		\right) 
+		= \left(N_{V}^{\infty} - S_{V}\right) - \ln\left(N_{V}^{\infty} - 
+		S_{V}\right) + S_{V} - \ln S_{V} + I_{H} + \left(N_{H} - I_{H}\right) - 
+		\ln\left(N_{H} - I_{H}\right).
+		$$
+		Following the same ideas of the main demonstration, we can prove the 
+		invariance of $\mathbf{D}_{2}$, global existence, continuity and 
+		uniqueness of the solution.
+%
+	\item
+	Now, if $S_{V} = N_{V}^{\infty}$, since $S_{V} + I_{V} \leq N_{V}^{\infty}$ 
+	and $S_{V} + \alpha I_{H} \leq N_{V}^{\infty}$, then $I_{V} = 0$ and $I_{H} 
+	= 0$. This last implies that the solution of 
+	SDE~\eqref{eqn:sto_vector_host} is the disease-free equilibrium.
+\end{enumerate}
+
+Therefore, the proof is complete.
+\end{proof}
