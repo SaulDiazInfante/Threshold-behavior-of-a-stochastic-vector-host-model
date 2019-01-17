@@ -521,13 +521,11 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
             \ln
             \left(
                 \displaystyle
-                \frac{\mathcal{R}_0 ^ D}{
-                    \left(
-                         \beta_V
-                         N_V ^ {\infty} +
-                        \beta_H N_H
-                    \right)
-                }    
+                \frac{\mathcal{R}_0 ^ D - 1}{
+                    \beta_V
+                    N_V ^ {\infty} +
+                    \beta_H N_H
+                }
             \right),
     \end{equation}
     we obtain the positivity of $x^{\dagger}$.
@@ -665,7 +663,7 @@ Now we establish our threshold extinction result.
                             \min\{a, b\}
                         }
                         \left (
-                             N_V ^ \infty
+                             \beta_V N_V ^ \infty
                             +
                             \beta_H N_H
                         \right )
@@ -741,6 +739,7 @@ Now we establish our threshold extinction result.
         = \mathcal{R}_0^D - 1 . 
     \end{equation}
     By \Cref{lem:quadratic_equation}, 
+    taking $n$ 
     $x^\dagger$ is a positive solution
     of \eqref{eqn:quadratic_equation_T_1_quadratic}
      \todo{finish the argument}
