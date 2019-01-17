@@ -185,8 +185,8 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
         < 
     \min 
         \left \{
-            \sqrt{\frac{\beta_V}{\mu_V}},
-            \sqrt{\frac{\beta_H}{\mu_H}}
+            \sqrt{\frac{\beta_V ^ 2}{2 \mu_V}},
+            \sqrt{\frac{\beta_H ^ 2}{2 \mu_H}}
         \right \}.
 \end{equation}
 %
@@ -242,7 +242,11 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                         \\
                     \mathcal{R}_0 ^ D &:=
                             \frac{
-                                 \beta_H N_V ^ \infty N_H}{\mu_V \mu_H} .
+                                 \beta_V \beta_H 
+                                 N_V ^ \infty N_H
+                            }{
+                                \mu_V \mu_H
+                            }.
                 \end{aligned}
             \end{equation*}
     \end{enumerate}
@@ -257,9 +261,10 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
     \begin{equation}
         \begin{aligned}
             \varphi (S_V, I_V, I_H) &:= 
+                \beta_V
                  \frac{a S_V I_H}{a I_V + b I_H}
                 - 
-                \frac{\sigma_V ^ 2}{2} 
+                \frac{\sigma_V ^ 2}{2 (N_V^\infty)^2} 
                 \left(
                     \frac{ a S_V I_H}{a I_V + b I_H}
                 \right) ^2,
@@ -272,7 +277,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                 a I_V + b I_H
             }
             - 
-            \frac{\sigma_H ^ 2}{2} 
+            \frac{\sigma_H ^ 2}{2 N_H ^ 2} 
                 \left(
                     \frac{
                         b (N_H - I_H)  I_V
@@ -297,6 +302,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                 }{
                     \min \{a, b\}
                 }
+                    \beta_{V}
                   N_V ^ {\infty}
                 - 
                 \frac{\sigma_V ^ 2}{2}
@@ -305,7 +311,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                         \max\{a,b\}
                     }{
                         \min \{a, b\}
-                    } N_V ^ {\infty}
+                    }
                 \right) ^ 2,
             \\
             \psi (S_V, I_V, I_H) 
@@ -322,7 +328,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                         }{
                             \min \{a, b\}
                         }
-                        N_H
+                        % N_H. N_H/N_V
                   \right) ^ 2,
         \end{aligned}
     \end{equation}
@@ -345,7 +351,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                 \max\{a,b\}
             }{
                 \min \{a, b\}
-            } N_V ^ {\infty}
+            }
         \right) ^ 2
         -
         \varphi (S_V, I_V, I_H) 
@@ -559,7 +565,7 @@ Now we establish our threshold extinction result.
                 \}
             }
             \left (
-                 N_V ^ \infty
+                 \beta_{V} N_V ^ \infty
                 +
                 \beta_H N_H
             \right ) dt

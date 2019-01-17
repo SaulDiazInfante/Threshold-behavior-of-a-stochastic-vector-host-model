@@ -44,3 +44,40 @@
             \exp(-\mu t), \quad t \geq 0
     $$
 \end{lemma}
+
+\begin{assumption}[] \label{ass:regularity}
+    \begin{enumerate}[({A}-1)]
+        \item We choose
+        \begin{align*}
+            \mathbf{D} :=& 
+            \left \lbrace 
+                \left( 
+                    S_{V},I_{V},I_{H} 
+                \right)
+                \in 
+                \mathbb{R}^{3}, 0\leq t_{0}\leq t:
+                \ 0<S_{V}\leq N_{V}^{\infty}, 
+                \ 0\leq I_{V}< N_{V}^{\infty}, 
+                \ S_{V} + I_{V} \leq N_{V}^{\infty},
+            \right.\\
+            &\ \left.
+                \ 0\leq I_{H}< N_{H},		 
+                \ S_{V} + \alpha I_{H} \leq N_{V}^{\infty}
+            \right\rbrace
+        \end{align*}
+        as our working set.
+%       \item 
+%       The coefficients of SDE \eqref{eqn:sto_vector_host} are Lipschitz on 
+%       $\mathbf{D}$.
+        \item 
+            The initial condition 
+            $
+                X(0) := 
+                    \left(
+                        S_{V}(0), I_{V}(0), 
+                        I_{H}(0)
+                    \right)$ 
+            lies on
+            $\mathbf{D}$.
+    \end{enumerate}
+\end{assumption}
