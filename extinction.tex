@@ -37,25 +37,30 @@ Our analysis needs the following function and conditions.
         $$
 \end{theorem}        
 \begin{proof}
-    The main idea is, apply a conveniently function and derive conditions. 
+    The main idea is apply the It\^{o} formula to a conveniently function and 
+    deduce conditions. 
     
-    Let $\rho (S_V, I_V, S_H, I_H)           := \ln I_V$, then the It\^{o} 
-    formula 
-    gives
+    Let $\rho (S_V, I_V, S_H, I_H) := \ln I_V$, then the It\^{o} 
+    formula gives
     \begin{equation} \label{eqn:ito_noise_extinction}
         \begin{aligned}
             d \ln I_V = & 
                 \left(
                     \beta_V
                     \frac{S_V I_H}{ I_V} - \mu_V
-                    - \frac{\sigma_V ^ 2}{2}
+                    - 
+                    \frac{1}{2}
+                    \left(
+                        \frac{\sigma_V}{N_V^{\infty}}
+                    \right) ^ 2
                     \left(
                         \frac{ S_V I_H}{I_V}
                     \right) ^ 2
                 \right) dt
                 %\\
                 %&
-                 + \sigma_V 
+                 + 
+                \frac{\sigma_V}{N_V^{\infty}}
                 \left(
                     \frac{S_V I_H}{ I_V}
                 \right) dB_t ^ V.
@@ -77,8 +82,11 @@ Our analysis needs the following function and conditions.
         \begin{aligned}
             \frac{1}{t} \ln(I_V(t))
             =&
-            - 
-            \frac{\sigma_V ^ 2}{2t}
+            -
+            \frac{1}{2t}
+            \left(
+                \frac{\sigma_V }{N_V^{\infty}}
+            \right) ^ 2
             \int_{0} ^ {t}
                 \left(
                     \frac{S_V I_H}{I_V} 
@@ -157,14 +165,10 @@ Our analysis needs the following function and conditions.
                 \right\} 
                 > 
             \max 
-                \left \{
-                    \sqrt{
-                        \frac{\beta_V ^ 2}{2 \mu_V}
-                    },
-                    \sqrt{
-                        \frac{\beta_H ^ 2}{2 \mu_H}
-                    }
-                \right \}
+            \left \{
+                \sqrt{\frac{(\beta_V N_V ^ {\infty}) ^ 2}{2 \mu_V}},
+                \sqrt{\frac{(\beta_H N_H) ^ 2}{2 \mu_H}}
+            \right \}
         $, 
     we obtain the desired conclusion.
 \end{proof}
@@ -186,8 +190,8 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
         < 
     \min 
         \left \{
-            \sqrt{\frac{\beta_V ^ 2}{2 \mu_V}},
-            \sqrt{\frac{\beta_H ^ 2}{2 \mu_H}}
+            \sqrt{\frac{(\beta_V N_V ^ {\infty}) ^ 2}{2 \mu_V}},
+            \sqrt{\frac{(\beta_H N_H) ^ 2}{2 \mu_H}}
         \right \}.
 \end{equation}
 %
@@ -477,9 +481,8 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
         \right) 
         - \frac{\mu_V \mu_H}{x}
         =
-        \left(
-            \mathcal{R}_0^D -1
-        \right),
+        \mathcal{R}_0^D -1
+        ,
     \end{equation}
     has a positive solution $x=x^\dagger$. 
 \end{lemma}
@@ -491,7 +494,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
         \left(
              \beta_V
              N_V ^ {\infty} +
-            \beta_H N_H            
+            \beta_H N_H
             -\frac{\mathcal{R}_0 ^ D - 1}{2 ^ n}
         \right) x ^ 2
         - \frac{\mu_v \mu_H}{2 ^ n} x
@@ -506,7 +509,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
                      \beta_V
                      N_V ^ {\infty} +
                     \beta_H N_H
-                    -\frac{\mathcal{R}_0 ^ D - 1}{2 ^ n}
+                    -\dfrac{\mathcal{R}_0 ^ D - 1}{2 ^ n}
                 \right)
             }.
     \end{equation}
