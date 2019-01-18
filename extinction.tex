@@ -22,20 +22,21 @@ Our analysis needs the following function and conditions.
                 }
             \right \}
     $,
-        then the disease will extinguish with probability one.  That is,
-        for any initial condition 
+        then the disease will exponentially extinguish with probability one.  
+        That is, for any initial condition 
         $(S_V(0), I_V(0), I_H(0)) ^{\top} \in \mathbb{D}$,
         $$
             \limsup_{t \to \infty} 
-                \frac{1}{t} \ln I_V(t) = 0 
+                \frac{1}{t} \ln I_V(t) < 0 
                 \quad \text{and} \quad
             \limsup_{t \to \infty} 
-                \frac{1}{t} \ln I_H(t) = 0, \quad 
+                \frac{1}{t} \ln I_H(t) < 0, \quad 
                 \text{
                    a.s.
                 }
         $$
 \end{theorem}        
+
 \begin{proof}
     The main idea is apply the It\^{o} formula to a conveniently function and 
     deduce conditions. 
@@ -205,8 +206,13 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
     \begin{enumerate}[\bf{(E\textendash}1)]
         \item 
             Constants $a$, $b$ of function $\rho$ are positive and
+            %$$
+            %    \max \{\mu_V, \mu_H \} < \min \{a, b \}.
+            %$$
             $$
-                \max \{\mu_V, \mu_H \} < \min \{a, b \}.
+                \mu_{V} \mu_H \leq \mu_v a,
+                \qquad 
+                \mu_{H} \mu_H \leq \mu_H b
             $$
         \item \label{ass:noise_condition}
             Noise intensities $\sigma_V, \sigma_H$ satisfy
