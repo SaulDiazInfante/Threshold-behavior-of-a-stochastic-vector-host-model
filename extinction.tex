@@ -463,7 +463,7 @@ $\sigma_V$, $\sigma_H$ are sufficiently small, that is,
             N_V ^ \infty,
     $$
     then, condition \textsc{ \textbf{(E\textendash 1)}}, implies that
-    second term in \eqref{eqn:phi_difference_rewritten} also results 
+    second factor in \eqref{eqn:phi_difference_rewritten} also results 
     nonnegative.
     
         The same reasoning applies to obtain the second inequality in 
@@ -549,7 +549,7 @@ Now we establish our threshold extinction result.
     \begin{equation}
         \limsup_{t \to \infty}
             \frac{1}{t}
-            \ln(aI_V + b I_H) < c , \qquad a.s.,
+            \ln(aI_V + b I_H) < (\mathcal{R}_0^S -1) <0 , \qquad a.s.,
     \end{equation}
     that is, the disease will extinguishes wit probability one.
 \end{theorem}
@@ -563,13 +563,13 @@ Now we establish our threshold extinction result.
     \begin{equation} \label{eqn:ito_extinction} 
         \begin{aligned}
           d \ln \rho =&
-            \left \{
+            \left [
                 \dfrac{
                     a ( S_V I_H - \mu_V I_V)
                     +
-                    b [\beta_H S_H I_V - \mu_H I_H]
+                    b (\beta_H S_H I_V - \mu_H I_H)
                 }{a I_V + bI_H}
-            \right \} dt
+            \right ] dt
             \\
             & 
             -
@@ -577,29 +577,35 @@ Now we establish our threshold extinction result.
             dt
             -
             \frac{1}{2}
-            \left \{
+            \left [
                 \dfrac{
                     \left(
-                        a \sigma_V S_V I_H
+                        \dfrac{\sigma_V}{N_V ^ {\infty}}
+                        a S_V  I_H
                     \right) ^ 2
                     +
-                    \left[
-                        b \sigma_H S_H I_V
-                    \right] ^2
+                    \left(
+                        \dfrac{\sigma_H}{N_H}
+                        b S_H I_V
+                    \right) ^2
                 }{
                     \left( 
                         a I_V + bI_H
                     \right) ^ 2
                 }
-            \right \} dt
+            \right ] dt
             \\
             & +
-            \sigma_V 
-            \frac{S_V I_H}{a I_V + b I_H}
+            \dfrac{\sigma_V}{N_V ^ {\infty}}
+            \left(
+                \frac{S_V I_H}{a I_V + b I_H}
+            \right)
             d B_t ^ V
             +
-            \sigma_H 
-            \frac{S_H I_V}{a I_V + b I_H}
+            \dfrac{\sigma_H}{N_H}
+            \left(
+                \frac{S_H I_V}{a I_V + b I_H}
+            \right)
             d B_t ^ H .
         \end{aligned}
     \end{equation}
@@ -625,8 +631,8 @@ Now we establish our threshold extinction result.
                 +
                 \beta_H N_H
             \right ) dt
-            \\
-            & 
+%            \\
+%            & 
             -
             \frac{1}{2}
             \dfrac{
@@ -643,8 +649,8 @@ Now we establish our threshold extinction result.
                 +
                 \sigma_H ^ 2
             \right) dt
-            \\
-            &
+%            \\
+%            &
             -
             \frac{
                 \mu_V \mu_H (I_V + I_H)
@@ -652,13 +658,17 @@ Now we establish our threshold extinction result.
             dt
             \\
             & +
-            \sigma_V 
-            \frac{S_V I_H}{a I_V + b I_H}
+            \dfrac{\sigma_V}{N_V ^ {\infty}}
+            \left(
+                \frac{S_V I_H}{a I_V + b I_H}
+            \right)
             d B_t ^ V
             +
-            \sigma_H
-            \frac{S_H I_V}{a I_V + b I_H}
-            d B_t ^ H
+            \dfrac{\sigma_H}{N_H}
+            \left(
+                \frac{S_H I_V}{a I_V + b I_H}
+            \right)
+            d B_t ^ H 
             %
             \\
             %
@@ -703,15 +713,19 @@ Now we establish our threshold extinction result.
                 +
                 \sigma_H ^ 2
             \right ) dt
-            \\
-            & +
-            \sigma_V 
-            \frac{S_V I_H}{a I_V + b I_H}
+            %\\
+            +
+            \dfrac{\sigma_V}{N_V ^ {\infty}}
+            \left(
+                \frac{S_V I_H}{a I_V + b I_H}
+            \right)
             d B_t ^ V
             +
-            \sigma_H
-            \frac{S_H I_V}{a I_V + b I_H}
-            d B_t ^ H.
+            \dfrac{\sigma_H}{N_H}
+            \left(
+                \frac{S_H I_V}{a I_V + b I_H}
+            \right)
+            d B_t ^ H .
         \end{aligned}
     \end{equation}
     According to inequality \eqref{eqn:ito_extinction_bound}, we establish
@@ -727,9 +741,9 @@ Now we establish our threshold extinction result.
         \right )\frac{x}{y}
         -
         \frac{\mu_V \mu_H}{x} 
-        = \mathcal{R}_0^D - 1,
+        = \mathcal{R}_0^D - 1.
     \end{equation}
-    taking $y := \dfrac{x}{2^n}$, with $n \in \mathbb{N}$ 
+    Taking $y := \dfrac{x}{2^n}$,  $n \in \mathbb{N}$, 
     %
     % satisfying \eqref{eqn:n_condition}, 
      we rewrite equation
@@ -748,10 +762,10 @@ Now we establish our threshold extinction result.
         = \mathcal{R}_0^D - 1 . 
     \end{equation}
     By \Cref{lem:quadratic_equation}, 
-    taking $n$ 
+    there is $n\in \mathbb{N}$ such that 
     $x^\dagger$ is a positive solution
-    of \eqref{eqn:quadratic_equation_T_1_quadratic}
-     \todo{finish the argument}
+    of \eqref{eqn:quadratic_equation_T_1_quadratic}.
+    Thus if we choose
     $$
         a:= x^\dagger, \quad b:= \frac{1}{2^n} x^{\dagger},
     $$
@@ -775,7 +789,7 @@ Now we establish our threshold extinction result.
          }
          = \mathcal{R}_0 ^ D - 1 .
     \end{equation}
-    Hence, combining \eqref{eqn:ito_extinction_bound} and 
+    Combining \eqref{eqn:ito_extinction_bound} and 
     \eqref{eqn:T_1_rzero_d},
     applying the mean operator
     $$
@@ -797,18 +811,16 @@ Now we establish our threshold extinction result.
                     \mathcal{R}_0 ^ D
                     -
                     \frac{1}{2}
-                    \left [
-                        \left(
-                            \sigma_V N_V ^ \infty
-                        \right) ^ 2
+                    \left (
+                        \sigma_V ^ 2
                         +
-                        \left(
-                            \sigma_H N_H
-                        \right) ^2
-                    \right ] - 1
-                }_{=\mathcal{R}_0 ^ S - 1 < 0}
+                        \sigma_H ^2 
+                    \right ) - 1
+                }_{=\mathcal{R}_0 ^ S - 1 }
                 \\
                 & +
+                \frac{\ln \rho(0)}{t}
+                +
                 \underbrace{
                     \frac{1}{t}
                     \int_{0}^{t}
@@ -839,8 +851,9 @@ Now we establish our threshold extinction result.
     Therefore
     $$
         \limsup_{t \to \infty}
-            \frac{\ln \rho}{t} <
+            \frac{\ln \rho(t) }{t} <
             \mathcal{R}_0 ^ S - 1 < 0, \quad a.s.,
     $$
-    that is, the disease will extinguishes with probability one.
+    that is, the disease will exponentially extinguishes 
+    with probability one.
 \end{proof}
