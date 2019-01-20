@@ -1,3 +1,66 @@
+\todo{REWRITE}
+We now establish theory for disease persistence.
+For our stochastic extension and under appropriated 
+conditions, \eqref{eqn:sto_vector_host},
+we guarantee that infected population persists. To this end, 
+we need the following.
+
+\begin{definition}[{\citet[pg.~936]{Liu2010}}] \label{def.pers}
+    Let us denote by $p(t)$ the  population size at time $t$. 
+    If
+    $$\displaystyle
+        \liminf\limits_{t\to\infty}
+        \frac{1}{t}
+        \int\limits_{0}^{t}p(s)ds >0 \qquad \text{a.s.,}
+    $$
+    then $p(t)$ is said to be stochastic strongly persistent in the mean.
+\end{definition}
+%
+\begin{lemma}[{\citet[Lemma 5.1]{Ji2014}}]\label{lem:log_Gronwall}
+    Let $p\in \mathcal{C}([0,+\infty)\times\Omega,(0,+\infty))$. If there exist 
+    positive constants 
+    $
+        \lambda_{0}
+    $, 
+    $
+        \lambda
+    $, such that 
+    $$
+        \ln(p(t))\geq 
+        \lambda t - \lambda_{0}
+        \int\limits_{0}^{t} 
+        p(s)
+        ds 
+        + 
+        F(t), \qquad\text{a.s.}
+    $$
+    for all $t\geq 0$, where 
+    $
+        F\in \mathcal{C}([0,+\infty)\times\Omega,\mathbb{R})
+    $ 
+    and 
+    $
+        \displaystyle
+        \lim
+        \limits_{t\to \infty}\frac{F(t)}{t}=0
+    $, 
+    a.s., then
+    $$
+        \liminf
+        \limits_{t\to\infty}
+        \frac{1}{t}
+        \int\limits_{0}^{t}
+            p(s)
+        ds 
+        \geq 
+        \frac{\lambda}{\lambda_{0}},
+        \qquad
+        \text{a.s.}
+    $$
+\end{lemma}
+
+
+
 \begin{assumption} \label{ass:persistence}
     Let
     $
@@ -26,7 +89,7 @@
             \min
             \left\{
                  \beta_H N_H + \mu_H, \ 
-                 \beta_V (N_V ^ {\infty} - \varepsilon) + \mu_V
+                 \beta_V \frac{N_V ^ {\infty}}{2} + \mu_V
             \right\}
             \geq 1.
         $
@@ -51,7 +114,7 @@
                 \sigma_H 
                     < \mu_V \mu_H
                     \sqrt{
-                        \frac{\beta_V (N_V ^ {\infty} - \varepsilon) + \mu_V}{
+                        \frac{\beta_V \frac{N_V ^ {\infty}}{2} + \mu_V}{
                             \left(
                                 \beta_H N_H + \mu_H
                             \right)  ^ 3
@@ -89,7 +152,7 @@
             \quad
             b:=
             \frac{
-                \beta_V (N_V ^ {\infty} - \varepsilon)
+                \beta_V \frac{N_V ^ {\infty}}{2}
                 + \mu_H
                 }{\mu_V \mu_H}.
     \end{align*}
